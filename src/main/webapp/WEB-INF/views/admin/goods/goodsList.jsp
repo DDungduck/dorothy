@@ -167,13 +167,37 @@
 										</td>
 										<td class="g_code">${goods.g_code}</td>
 										<td class="goDetail">${goods.g_name}</td>
-										<td class="g_type">${goods.g_type}</td>
+										<td class="g_type">
+											<c:if test="${goods.g_type eq 1 }">
+											프리미엄 케이크
+											</c:if>
+											<c:if test="${goods.g_type eq 2 }">
+											레터링 케이크
+											</c:if>
+											<c:if test="${goods.g_type eq 3 }">
+											부가상품
+											</c:if>
+										</td>
 										<td>${goods.g_price}</td>
 										<td class="col-md-1">
 											<c:if test="${not empty goods.g_file}">
 												&nbsp;<img src="/resources/images/common/haveimg.png" style="margin-bottom: 0px; vertical-align: middle; display: inline-block;"/>
 											</c:if></td>
-										<td class="text-center">${goods.g_new} | ${goods.g_recommend }</td>
+										<td class="text-center">
+											<c:if test="${goods.g_new eq 1 }">
+												O
+											</c:if>
+											<c:if test="${goods.g_new eq 2 }">
+												X
+											</c:if>
+										 | 
+											<c:if test="${goods.g_recommend eq 1 }">
+												O
+											</c:if>
+											<c:if test="${goods.g_recommend eq 2 }">
+												X
+											</c:if>
+										</td>
 									</tr>
 								</c:forEach>
 							</c:when>
