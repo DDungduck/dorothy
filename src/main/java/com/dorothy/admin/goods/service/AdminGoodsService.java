@@ -14,4 +14,5 @@ public interface AdminGoodsService {
 	public int goodsUpdate(MemberGoodsVO gvo) throws Exception;
 	public int goodsInsert(MemberGoodsVO gvo) throws Exception;
 	public int deleteAll(String[] numArr) throws IOException;
+	public List<MemberGoodsVO> goodsListExcel(MemberGoodsVO gvo);
 }

@@ -62,7 +62,7 @@
 							<tr>
 								<td>상품종류</td>
 								<td class="text-left">
-									<input type="text" id="g_type" name="g_type" class="form-control" placeholder="1 : 프리미엄 케이크, 2 : 레터링 케이크, 3 : 추가상품"/>
+									<input type="text" id="g_type" name="g_type" class="form-control" placeholder="1 : 프리미엄 케이크, 2 : 레터링 케이크, 3 : 부가상품"/>
 								</td>
 							</tr>
 							<tr>
@@ -78,7 +78,7 @@
 							<tr>
 								<td>사이즈옵션</td>
 								<td class="text-left">
-									<input type="text" id="g_size" name="g_size" class="form-control" placeholder="1 : 미니 호수만, 2 : 미니 + 1호"/>
+									<input type="text" id="g_size" name="g_size" class="form-control" placeholder="0: 부가상품, 1 : 미니 호수만, 2 : 미니 + 1호"/>
 								</td>
 							</tr>
 							<tr>

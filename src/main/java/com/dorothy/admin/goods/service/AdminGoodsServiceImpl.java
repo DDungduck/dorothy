@@ -99,4 +99,10 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		return result;
 	}
 
+	@Override
+	public List<MemberGoodsVO> goodsListExcel(MemberGoodsVO gvo) {
+		List<MemberGoodsVO> list = adminGoodsDao.goodsListExcel(gvo);
+		return list;
+	}
+
 }

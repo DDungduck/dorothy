@@ -7,11 +7,26 @@
 		.cart_table thead, tr{border-bottom : 1px solid gray;}
 		.cart_table{margin-left : 130px;}
 		.imgsize-s{border: 0; max-width: 100%; vertical-align: top; margin : 20px 10px 10px 10px;}
+		.amountChange{text-decoration : none; color: black;}
+		input[type=number]{width : 50px;}
 	</style>
 	
 	<script type="text/javascript">
 		$(function(){
-			
+			$(".amountChange").click(function(){
+				let gc_amount = $(this).parents(".order_goods_num").find(".otherAmount").val();
+				let gc_num = $(this).parents(".cart_info_tr").find(".cartCheck").attr("data-num");
+
+
+				$("#changeGc_num").val(gc_num);
+				$("#changeGc_amount").val(gc_amount);
+				
+				$("#amountUpdate").attr({
+					"method":"post",
+					"action":"/member/cart/cartUpdate"
+				});
+				$("#amountUpdate").submit();
+			});
 			$("#checkItemOrder").on("click", function(){
 				let codeArr = [];
 				
@@ -142,11 +157,11 @@
 						<div class="cart_table">
 							<table>
        							<colgroup>
-	                                <col style="width:6%">  <!-- 체크박스 -->
-	                                <col>					<!-- 상품명/옵션 -->
-	                                <col style="width:10%">  <!-- 수량 -->
-	                                <col style="width:20%"> <!-- 상품금액 -->
-	                                <col style="width:20%"> <!-- 합계금액 -->
+	                                <col style="width:100px">  <!-- 체크박스 -->
+	                                <col style="width:700px">					<!-- 상품명/옵션 -->
+	                                <col style="width:200px">  <!-- 수량 -->
+	                                <col style="width:300px"> <!-- 상품금액 -->
+	                                <col style="width:300px"> <!-- 합계금액 -->
                            	 	</colgroup>
 								<thead>
                             		<tr>
@@ -206,9 +221,9 @@
                                 </td>
                                 <td class="td_cart_amount">
                                     <div class="order_goods_num">
-                                        <strong>${cart.gc_amount }개</strong>
+                                        <strong><input class="otherAmount" type="number" min="1" value="${cart.gc_amount }" />개</strong>
                                         <div class="btn_gray_list">
-                                            <a href="#optionViewLayer" class="btn_gray_small btn_open_layer"  data-goodsno="1000000091" data-sno="80005"  ><span>옵션/수량변경</span></a>
+                                            <a href="#" class="amountChange"><span>수량변경</span></a>
                                         </div>
                                     </div>
                                 </td>
@@ -230,6 +245,11 @@
 				</c:choose>
 			</div>
             <form id="frmCart" name="frmCart" >
+            </form>
+            
+            <form id="amountUpdate" name="amountUpdate" >
+            	<input type="hidden" id="changeGc_num" name="changeGc_num" />
+            	<input type="hidden" id="changeGc_amount" name="changeGc_amount" />
             </form>
 
 			<div class="contentBtn text-right">

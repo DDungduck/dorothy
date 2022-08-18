@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/common.jspf"%>
-		
 		<script type="text/javascript">
 			$(function(){
 				/* 검색 후 검색 대상과 검색 단어 출력 */
@@ -90,6 +89,14 @@
 							}
 						});
 					}
+				});
+				
+				$("#excelDown").click(function(){
+					$("#goodsSearch").attr({
+						"method" : "get",
+						"action" : "/admin/goods/goodsExcel"
+					})
+					$("#goodsSearch").submit();
 				});
 				
 				/* 입력 양식 enter 제거 */
@@ -181,7 +188,7 @@
 										<td>${goods.g_price}</td>
 										<td class="col-md-1">
 											<c:if test="${not empty goods.g_file}">
-												&nbsp;<img src="/resources/images/common/haveimg.png" style="margin-bottom: 0px; vertical-align: middle; display: inline-block;"/>
+												&nbsp;<img id="smallImg" src="/dorothyUpload/goods/${goods.g_file }" style="margin-bottom: 0px; vertical-align: middle; display: inline-block; width: 30px; height: 30px;"/>
 											</c:if></td>
 										<td class="text-center">
 											<c:if test="${goods.g_new eq 1 }">
@@ -234,6 +241,7 @@
 						</select>
 						<input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" class="form-control" />
 						<input type="button" value="검색" id="searchData" name="searchData" class="btn btn-success" />
+						<input type="button" value="엑셀 다운로드" id="excelDown" name="excelDown" class="btn btn-success" />
 					</div>
 				</form>
 			</div>

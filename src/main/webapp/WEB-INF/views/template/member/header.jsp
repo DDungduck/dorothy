@@ -19,7 +19,7 @@
 							<a href="/member/goods/goodsListLetter" >레터링 케이크</a>
 						</li>
 						<li>
-							<a href="/member/goods/goodsListAddition" >추가상품</a>
+							<a href="/member/goods/goodsListAddition" >부가상품</a>
 						</li>
 					</ul>
 				<li><a href="#">CUSTOM</a>

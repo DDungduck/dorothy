@@ -68,5 +68,21 @@ public class MemberCartController {
 		
 		return "member/cart/cartList";		
 	}
+	
+	@RequestMapping(value="/cartUpdate", method = RequestMethod.POST)
+	public String cartUpdate(HttpServletRequest request) throws Exception {
+		log.info("cartUpdate 호출 성공");
+		
+		int gc_num = Integer.parseInt(request.getParameter("changeGc_num"));
+		int gc_amount = Integer.parseInt(request.getParameter("changeGc_amount"));
+		
+		MemberCartVO mvco = new MemberCartVO();
+		mvco.setGc_num(gc_num);
+		mvco.setGc_amount(gc_amount);
+		
+		memberCartService.cartUpdate(mvco);
+		
+		return "redirect:/member/cart/cartList";		
+	}
 
 }

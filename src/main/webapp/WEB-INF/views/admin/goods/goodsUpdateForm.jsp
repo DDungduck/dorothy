@@ -65,13 +65,13 @@
 							<tr>
 								<td>상품이름</td>
 								<td class="text-left">
-									<input type="text" id="g_name" name="g_name" value="${updateData.g_name}" class="form-control" />
+									<input type="text" id="g_name" name="g_name" value="${updateData.g_name}" class="form-control" readonly="readonly"/>
 								</td>
 							</tr>
 							<tr>
 								<td>상품가격</td>
 								<td class="text-left">
-									<input type="text" id="g_price" name="g_price" value="${updateData.g_price}" class="form-control" />
+									<input type="text" id="g_price" name="g_price" value="${updateData.g_price}" class="form-control" readonly="readonly"/>
 								</td>
 							</tr>	
 							<tr>

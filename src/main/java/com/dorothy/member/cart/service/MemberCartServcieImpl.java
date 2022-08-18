@@ -42,5 +42,13 @@ public class MemberCartServcieImpl implements MemberCartService {
 		
 		return result;
 	}
+	@Override
+	public int cartUpdate(MemberCartVO mvco) {
+		int result = 0;
+		
+		result = memberCartDao.cartUpdate(mvco);
+		
+		return result;
+	}
 
 }

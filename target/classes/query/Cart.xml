@@ -26,4 +26,10 @@
 		DELETE FROM cart
 		WHERE gc_num = #{gc_num}
 	</delete>
+	
+	<update id="cartUpdate" parameterType="cart">
+		UPDATE cart
+		set gc_amount = #{gc_amount}
+		WHERE gc_num = #{gc_num}
+	</update>
 </mapper>

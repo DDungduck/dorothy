@@ -9,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dorothy.admin.goods.service.AdminGoodsService;
+import com.dorothy.common.excel.ListExcelView;
 import com.dorothy.common.vo.PageDTO;
 import com.dorothy.member.goods.vo.MemberGoodsVO;
 
@@ -136,4 +138,17 @@ public class AdminGoodsController {
 		return "admin/goods/goodsInsertForm"; // /WEB-INF/views/admin/goods/goodsInsertForm.jsp
 	}
 	
+	@RequestMapping(value="/goodsExcel", method=RequestMethod.GET)
+	public ModelAndView goodsExcel(@ModelAttribute MemberGoodsVO gvo) {
+		log.info("goodsExcel »£√‚");
+		
+		List<MemberGoodsVO> goodsList = adminGoodsService.goodsListExcel(gvo);
+		
+		ModelAndView mv = new ModelAndView(new ListExcelView());
+		mv.addObject("goodsList", goodsList);
+		mv.addObject("template", "goods.xlsx");
+		mv.addObject("file_name", "goods");
+		
+		return mv;
+	}
 }

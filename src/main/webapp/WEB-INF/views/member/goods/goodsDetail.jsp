@@ -13,10 +13,19 @@
 		input[type=date]{height : 20px; width : 120px; }
 		#size{height : 20px; width : 120px; }
 		input[type=number] { height : 20px; width : 120px; text-align : right;}
+		.goodsImgInfo{margin-bottom : 300px;}
+		.DetailInfo{margin-top : 200px;}
+		.contentContainer a{text-decoration : none; color : black;}
+		.goods_tab{ text-align: center; padding-top: 40px; padding: 80px 0 0 0;
+    border-bottom: 1px solid #bbbbbb;}
+		.goods_tab ul{display: inline-block; width: auto; height: 57px; padding: 40px;}
+		.goods_tab li {float: left; width: 220px; margin-left: -1px; }
+		.DetailInfo p, h3{text-align : center; margin : 30px;}
 	</style>
 		<title>상품 상세페이지</title>
 		<script type="text/javascript">
 			$(function(){
+				
 				$("#addCartBtn").click(function(){
 					if(${member != null}) {
 						addFrmInfo();
@@ -126,6 +135,96 @@
 						<input id="buyBtn" type="button" value="BUY NOW" />
 					</div>
 				</div>
+			</div>
+		</div>
+		<br />
+		<div class="DetailInfo">
+			<div id="detail">
+				<div class="goods_tab">
+					<ul>
+						<li class="on">
+							<a href="#detail">상품상세정보</a>
+						</li>
+						<li>
+							<a href="#delivery">배송안내</a>
+						</li>
+						<li>
+							<a href="#exchange">교환 및 반품안내</a>
+						</li>
+					</ul>
+				</div>
+				<div class="detail_img_container">
+					<div class="detail_img">
+						<img src="/dorothyUpload/goodsDetail/1-${detail.g_file }" />
+					</div>
+					<div class="detail_img">
+						<img src="/dorothyUpload/goodsDetail/2-${detail.g_file }" />
+					</div>
+				</div>
+			</div>
+			<div id="delivery">
+				<div class="goods_tab">
+					<ul>
+						<li>
+							<a href="#detail">상품상세정보</a>
+						</li>
+						<li class="on">
+							<a href="#delivery">배송안내</a>
+						</li>
+						<li>
+							<a href="#exchange">교환 및 반품안내</a>
+						</li>
+					</ul>
+				</div>
+				<div class="delivery_cont">
+					<h3>배송안내</h3>
+					<div class="admin_msg">
+						<p>- 배송비 : 기본 배송료는 3,500원입니다. (도서,산간,오지 일부지역은 배송이 불가합니다.) 40,000원 이상 구매시 무료배송입니다.</p>
+						<p>- 택배배송은 주문시점, 배송지에 따라 상이합니다. (서울지역만 당일택배배송이 가능합니다.)</p>
+						<p>&nbsp;</p>
+						<p>[서울 당일택배배송]</p>
+						<p>월요일~금요일 배송 (토요일, 일요일 휴무)</p>
+						<p>서울 당일택배배송의 경우 정확한 시간 지정은 어려우며, 우천시 다소 늦어질 수 있습니다.</p>
+						<p>&nbsp;</p>
+						<p>[전국 우체국택배배송]</p>
+						<p>화요일~금요일 배송 (일요일, 월요일 휴무)</p>
+						<p>택배배송의 특성상 받는 시간대는 미리 알 수 없는 점 미리 말씀드립니다.</p>
+					</div>
+				</div>
+			</div>
+			<div id="exchange">
+				<div class="goods_tab">
+					<ul>
+						<li>
+							<a href="#detail">상품상세정보</a>
+						</li>
+						<li class="on">
+							<a href="#delivery">배송안내</a>
+						</li>
+						<li>
+							<a href="#exchange">교환 및 반품안내</a>
+						</li>
+					</ul>
+				</div>
+			<div class="exchange_cont">
+                <h3>교환 및 반품안내</h3>
+                <div class="admin_msg">
+                    <p>- 상품 청약철회 가능기간은 상품제작 이전에 가능합니다.&nbsp;</p>
+                    <p>- 상품의 제작이 시작된 이후에는 단숨 변심으로 인한 환불 또는 교환은 불가합니다.&nbsp;</p>
+                    <p>- 상품 수령 후 상품의 파손 또는 불량으로 인한 부분은 전액 환불 또는 교환이 가능합니다.&nbsp;</p>
+                </div>
+                <h3>환불안내</h3>
+                <div class="admin_msg">
+                    <p>- 케이크는 식품 특성상 주문 요청에 의해 제작되기 때문에 단순 변심, 임의 반품에 의한 교환(재배송) 환불이 불가한 점 양해 부탁드립니다.</p><p>- 고객님의 사정으로 인한 주소지 불충분 및 수취지연 시 발생되는 제품의 파손이나 변질에 대해 책임지지 않습니다.</p>
+                    <p>- 파손/ 변질된 제품 사진을 접수하지 않는 경우 교환(재배송) 환불이 불가합니다.</p>
+                    <p>- 배송된 상품의 신선도나 구성품 누락 시 라니케이크의 책임인 경우 새로운 구성으로 교환해드립니다. (문의 02-123-1234)</p>
+                </div>
+                <h3>AS안내</h3>
+                <div class="admin_msg">
+                    <p>- 소비자분쟁해결 기준(공정거래위원회 고시)에 따라 피해를 보상받을 수 있습니다.</p>
+                    <p>- A/S는 판매자에게 문의하시기 바랍니다. 전화 : 02-123-1234 우측하단 상담톡을 활용해주시기 바랍니다.&nbsp;</p>
+                </div>
+            </div>
 			</div>
 		</div>
 		</div>

@@ -13,4 +13,5 @@ public interface AdminGoodsDao {
 	public int goodsUpdate(MemberGoodsVO gvo);
 	public int goodsInsert(MemberGoodsVO gvo);
 	public MemberGoodsVO deleteVO(int g_code);
+	public List<MemberGoodsVO> goodsListExcel(MemberGoodsVO gvo);
 }

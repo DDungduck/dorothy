@@ -10,5 +10,6 @@ public interface MemberCartService {
 	public List<MemberCartVO> cartList(MemberVO mvo);
 	public int cartInsert(MemberCartVO mvco);
 	public int deleteAll(String[] numArr);
+	public int cartUpdate(MemberCartVO mvco);
 
 }

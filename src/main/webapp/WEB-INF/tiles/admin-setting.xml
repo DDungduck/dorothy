@@ -29,7 +29,7 @@
    </definition>
    
    <definition name="admin/*" extends="basic">
-      <put-attribute name="title" value="관리자 게시판 관리" />
+      <put-attribute name="title" value="관리자 페이지" />
       <put-attribute name="sub" value="" />
       <put-attribute name="main" value="/WEB-INF/views/admin/{1}.jsp" />
    </definition>
