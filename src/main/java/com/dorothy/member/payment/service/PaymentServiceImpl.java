@@ -46,6 +46,8 @@ public class PaymentServiceImpl implements PaymentService {
 			int gc_num = Integer.parseInt(code[i]);
 			MemberCartVO cvo = cartDao.getCart(gc_num);
 			cartList.add(cvo);
+			
+			cartDao.cartDelete(cvo);
 		}
 		return cartList;
 	}
