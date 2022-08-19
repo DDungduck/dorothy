@@ -87,9 +87,9 @@ html::-webkit-scrollbar-track {
 .title-text {
   font-size: 0.65rem;
 }
-.list-text > ul > li {
+/* .list-text > ul > li {
   font-size: 0.85rem;
-}
+} */
 .img-profile-box > img {
   width: 120px;
   min-width: 100%;

@@ -203,7 +203,7 @@
 		</script>
 	</head>
 	<body style="padding-top: 0px">
-		<h1 class="sub-header text-center">QNA 게시판</h1>
+		
 		
 			
 	<!-- 검색기능 정의 -->
@@ -220,7 +220,7 @@
          			    <option value="q_title">제목</option>
          				<option value="q_name">작성자</option>
          				<option value="q_content">내용</option>
-         				<option value="q_date">작성일자</option>
+         				<!-- <option value="q_date">작성일자</option> -->
          			</select>
          		</div>
          		<div class = "form-group" id="textCheck">
@@ -287,7 +287,7 @@
             </c:when>
             <c:otherwise>
                <tr>
-                  <td colspan="4" class="tac text-center">등록된 게시물이 존재하지 않습니다.</td>
+                  <td colspan="10" class="tac text-center">등록된 게시물이 존재하지 않습니다.</td>
                </tr>
             </c:otherwise>
          </c:choose>

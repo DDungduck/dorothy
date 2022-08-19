@@ -7,10 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dorothy.common.file.FileUploadUtil;
 import com.dorothy.common.vo.PageDTO;
 import com.dorothy.member.board.free.service.BoardFreeService;
 import com.dorothy.member.board.free.vo.BoardFreeVO;
@@ -26,7 +24,7 @@ public class BoardFreeController {
 	private BoardFreeService boardFreeService;
 	
 	/***********************************************************
-	 * 자유게시판 글 목록 구현하기(페이징 처리 제외 목록 조회)
+	 * 자유게시판 글 목록 구현
 	 * 요청 URL : http://localhost:8080/board/free/boardFreeList
 	 ***********************************************************/
 	@RequestMapping(value="/boardFreeList", method = RequestMethod.GET)
@@ -152,4 +150,5 @@ public class BoardFreeController {
 		
 		return "redirect:" + url;
 	}
+	
 }

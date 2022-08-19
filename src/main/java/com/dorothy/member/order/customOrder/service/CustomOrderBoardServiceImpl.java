@@ -57,6 +57,7 @@ public class CustomOrderBoardServiceImpl implements CustomOrderBoardService {
 
 		if (cobvo.getFile().getSize() > 0) {
 			String fileName = FileUploadUtil.fileUpload(cobvo.getFile(), "customOrder");
+			System.out.println("fileName" + fileName);
 			cobvo.setC_file(fileName);
 		}
 
@@ -99,7 +100,7 @@ public class CustomOrderBoardServiceImpl implements CustomOrderBoardService {
 				FileUploadUtil.fileDelete(cobvo.getC_file());
 			}
 
-			String fileName = FileUploadUtil.fileUpload(cobvo.getFile(), "customOrder");
+			String fileName = FileUploadUtil.fileUpload(cobvo.getFile(), "board/customOrder");
 			cobvo.setC_file(fileName);
 		}
 		result = customOrderBoardDao.customOrderUpdate(cobvo);

@@ -26,9 +26,13 @@
 		<script type="text/javascript">
 			$(function(){
 				
+				
 				$("#addCartBtn").click(function(){
 					if(${member != null}) {
 						addFrmInfo();
+						
+						if(!chkData("#date", "날짜를")) return;
+						else if(!chkData("#size", "사이즈를")) return;
 						
 						$("#frmCart").attr({"method" : "post", "action" : "/member/cart/goCart"});
 	 					$("#frmCart").submit();
@@ -41,6 +45,9 @@
 				$("#buyBtn").click(function(){
 					if(${member != null}) {
 						addFrmInfo();
+						
+						if(!chkData("#date", "날짜를")) return;
+						else if(!chkData("#size", "사이즈를")) return;
 						
 						$("#frmCart").attr({"method" : "post", "action" : "/member/cart/goPayment"});
 	 					$("#frmCart").submit();
@@ -92,7 +99,7 @@
 						<tr>
 							<th class="text-center">수령일</th>
 							<td>
-								<input type="date" id="date"/>
+								<input type="date" id="date" min="${today }" max="2022-12-31"/>
 							</td>
 						</tr>
 <!-- 						<tr>

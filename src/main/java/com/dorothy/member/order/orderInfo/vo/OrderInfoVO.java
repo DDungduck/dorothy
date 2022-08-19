@@ -1,11 +1,16 @@
 package com.dorothy.member.order.orderInfo.vo;
 
-import lombok.Data;
+import com.dorothy.common.vo.CommonVO;
 
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+@EqualsAndHashCode(callSuper = false)
 @Data
-public class OrderInfoVO {
+public class OrderInfoVO extends CommonVO {
 	private int o_num;
 	private String p_merchant_uid;
+	private String m_id;
 	private String g_name;
 	private int g_size;
 	private int gc_amount;

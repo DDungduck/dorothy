@@ -1,5 +1,8 @@
 package com.dorothy.member.login.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -7,8 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dorothy.member.login.service.MemberService;
@@ -40,8 +45,21 @@ public class MemberController {
 		
 		service.register(vo);
 		
-		return null;
+		return "redirect:/";
 		
+	}
+	// 아이디 중복체크
+	@RequestMapping("/idcheck")
+	@ResponseBody
+	public Map<Object, Object> idcheck(@RequestBody String m_id) throws Exception {
+
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+
+		count = service.idcheck(m_id); 
+		map.put("cnt", count);
+
+		return map;
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

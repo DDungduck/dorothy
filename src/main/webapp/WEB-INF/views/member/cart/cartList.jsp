@@ -5,6 +5,8 @@
 		.order_tit > ol li{float: left; }
 		.pick_add_info a{text-decoration : none; color: black;}
 		.cart_table thead, tr{border-bottom : 1px solid gray;}
+		.no_line tr{border-bottom : 0;}
+		.no_line td{padding : 15px;}
 		.cart_table{margin-left : 130px;}
 		.imgsize-s{border: 0; max-width: 100%; vertical-align: top; margin : 20px 10px 10px 10px;}
 		.amountChange{text-decoration : none; color: black;}
@@ -187,10 +189,15 @@
                                 </td>
                                 <td class="aqtd_left">
                                     <div class="pick_add_cont">
-                                        <span class="pick_add_img">
-                                            <a href="/member/cart/cartList"><img src="/dorothyUpload/goods/${cart.g_file }" width="40" class="imgsize-s" /></a>
-                                        </span>
-                                        <div class="pick_add_info">
+                                    	<table class="no_line">
+                                    		<tr>
+                                    			<td>
+                                    			<span class="pick_add_img">
+                                           		 <a href="/member/cart/cartList"><img src="/dorothyUpload/goods/${cart.g_file }" width="80" class="imgsize-s" /></a>
+                                        		</span>
+                                       			 </td>
+                                       			 <td>
+                                       			 <div class="pick_add_info">
                                             <em><a href="/member/goods/goodsDetail?g_code=${cart.g_code }">${cart.g_name}</a></em>
 
                                             <div class="pick_option_box">
@@ -213,6 +220,11 @@
                                             <!-- tuning -->
 
                                         </div>
+                                       			 </td>
+                                    		</tr>
+                                    	</table>
+                                        
+                                        
                                     </div>
                                     <!-- //pick_add_cont -->
 
@@ -251,7 +263,8 @@
             	<input type="hidden" id="changeGc_num" name="changeGc_num" />
             	<input type="hidden" id="changeGc_amount" name="changeGc_amount" />
             </form>
-
+			<br />
+			<br />
 			<div class="contentBtn text-right">
                 <input type="button" value="쇼핑 계속하기" id="goCakeList" class="btn btn-success">
             </div>

@@ -2,6 +2,9 @@ package com.dorothy.member.board.qna.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.GetMapping;
@@ -9,13 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dorothy.common.vo.PageDTO;
 import com.dorothy.member.board.qna.service.BoardService;
 import com.dorothy.member.board.qna.vo.BoardVO;
+import com.dorothy.member.login.vo.MemberVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -62,6 +65,26 @@ public class BoardController {
 		return "member/board/qna/boardList"; // member/board/qna/boardList.jsp
 	}
 	
+	@RequestMapping(value="/myList", method = RequestMethod.GET)
+//	@GetMapping("/boardList")
+	public String myList(@ModelAttribute("data") BoardVO bvo, HttpServletRequest req, Model model) {
+		log.info("boardList 호출 성공");
+		
+		HttpSession session = req.getSession();
+		MemberVO mvo = (MemberVO) session.getAttribute("member");
+		
+		// 전체 레코드 조회
+		List<BoardVO> boardList = boardService.myList(mvo);
+		model.addAttribute("boardList", boardList);
+		
+		// 전체 레코드수 구현
+		int total = boardService.boardListCnt(bvo);
+		// 페이징 처리
+		model.addAttribute("pageMaker", new PageDTO(bvo, total)); // new PageDTO(CommonVO 또는 CommonVO 하위 클래스의 인스턴스(BoardVO), 총 레코드수)
+		
+		return "member/board/qna/boardList"; // member/board/qna/boardList.jsp
+	}
+	
 	/*************************************
 	 * 글쓰기 폼 출력하기
 	 *************************************/
@@ -82,7 +105,7 @@ public class BoardController {
 		
 		int result = 0;
 		String url = "";
-		/* bvo.setM_id("abc123"); */
+//		bvo.setM_id("abc123");
 		bvo.setQ_status("답변대기");
 		
 		

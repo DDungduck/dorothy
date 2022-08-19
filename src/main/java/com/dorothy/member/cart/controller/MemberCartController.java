@@ -84,5 +84,21 @@ public class MemberCartController {
 		
 		return "redirect:/member/cart/cartList";		
 	}
+	
+	@RequestMapping(value="/goPayment", method = RequestMethod.POST)
+	public String goPayment(@ModelAttribute("data") MemberCartVO mvco, HttpServletRequest req, Model model) {
+		log.info("goPayment 호출 성공");
+		
+		memberCartService.cartInsert(mvco);
+		int num = memberCartService.getCartNum();
+		String gc_num = Integer.toString(num);
+		
+
+		req.setAttribute("codeList", gc_num);
+		String data = (String) req.getAttribute("codeList");
+		
+		log.info(data);
+		return "/member/cart/passData";
+	}
 
 }

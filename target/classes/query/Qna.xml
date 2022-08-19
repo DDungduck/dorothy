@@ -102,6 +102,25 @@
 		]]>
 	</select>
 	
+		<select id="myList" parameterType="member" resultType="board">
+		<![CDATA[
+		SELECT q_num, m_id, q_title, TO_CHAR(q_date, 'YYYY-MM-DD') as q_date, q_readcnt, q_file,
+			   (SELECT COUNT(q_num) FROM reply_qna WHERE q_num = bq.q_num) as q_replycnt, q_status, q_category
+		FROM (
+			SELECT /*+ INDEX_DESC(board_qna board_qna_pk) */
+				ROWNUM as rnum, q_num, m_id, q_title, q_date, q_readcnt, q_file, q_status, q_category
+			FROM board_qna
+			WHERE ]]>
+			<trim prefix="(" suffix=") AND" suffixOverrides="AND">
+				<include refid="boardSearch"></include>
+			</trim>
+			<![CDATA[ ROWNUM <= #{pageNum} * #{amount}
+			) bq
+		WHERE bq.m_id = #{m_id} AND rnum > ( #{pageNum} - 1 ) * #{amount}
+		ORDER BY q_num DESC
+		]]>
+	</select>
+	
 	
 	
 	<!-- 나의 글 찾기 --> 

@@ -34,4 +34,10 @@ public class AdminPaymentServiceImpl implements AdminPaymentService {
 		return result;
 	}
 
+	@Override
+	public List<PaymentVO> paymentListExcel(PaymentVO pvo) {
+		List<PaymentVO> paymentList = paymentDao.paymentListExcel(pvo);
+		return paymentList;
+	}
+
 }

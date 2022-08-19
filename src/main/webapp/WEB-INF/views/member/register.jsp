@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/common.jspf"%>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$("#registerBtn").click(function(){
@@ -11,6 +12,8 @@
 				else if(!chkData("#m_mail", "메일을")) return;
 				else if(!chkData("#m_pnb", "휴대폰번호를")) return;
 				else if(!chkData("#m_addr", "주소를")) return;
+				else if(!chkData("#m_addr2", "주소를")) return;
+				else if(!chkData("#m_addr3", "주소를")) return;
 				else{	
 					$("#register").attr({
 						"method":"post",
@@ -20,15 +23,64 @@
 					$("#register").submit();
 				}
 			});
+		/* 취소 버튼 클릭 시 폼 리셋 */
+		$("#registerCancelBtn").click(function(){
+			$("#register").each(function(){
+				this.reset();
+			});
 		});
+	});
+	// 주소 api
+	function execPostCode() {
+         new daum.Postcode({
+             oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+ 
+                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+ 
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                if(fullRoadAddr !== ''){
+                    fullRoadAddr += extraRoadAddr;
+                }
+ 
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                console.log(data.zonecode);
+                console.log(fullRoadAddr);
+                
+                
+                $("[name=m_addr]").val(data.zonecode);
+                $("[name=m_addr2]").val(fullRoadAddr);
+                
+                /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+                document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+            }
+         }).open();
+     }
 </script>
 <body>
 	<section id="container">
-		<form id ="register" name ="register" class="form-horizonta">
+		<form id ="register" name ="register" class="form-horizonta" style="width: 50%; margin: auto;">
 		<!-- <form action="/member/register" method="post"> -->
-			<div class="form-group has-feedback">
-				<label class="control-label" for="m_id">아이디</label> <input
-					class="form-control" type="text" id="m_id" name="m_id"/>
+			<div class="form-group has-feedback" id = "divInputId">
+				<label class="control-label" for="m_id">아이디</label> <input 
+					class="form-control"  type="text" id="m_id" name="m_id">	
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="m_pwd">비밀번호</label> <input
@@ -50,14 +102,20 @@
 				<label class="control-label" for="m_pnb">휴대폰번호</label> <input
 					class="form-control" type="text" id="m_pnb" name="m_pnb" />
 			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="m_addr">주소</label> <input
-					class="form-control" type="text" id="m_addr" name="m_addr" />
+			<div class="form-group">
+				<label class="control-label" for="m_addr">주소</label><br />                  
+				<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="m_addr" id="m_addr" type="text" readonly="readonly" >
+			    	<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
+			</div>
+			<div class="form-group">
+			    <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="m_addr2" id="m_addr2" type="text" readonly="readonly" />
+			</div>
+			<div class="form-group">
+			    <input class="form-control" placeholder="상세주소" name="m_addr3" id="m_addr3" type="text"  />
 			</div>
 			<div class="form-group has-feedback">
 				<input type="button" value="회원가입" id="registerBtn" class="btn btn-success" />
-				<!-- <button class="btn btn-success" type="submit" id="submit">회원가입</button> -->
-				<button class="cencle btn btn-danger" type="button">취소</button>
+				<input type="button" value="취소" id="registerCancelBtn" class="cencle btn btn-danger" />
 			</div>
 		</form>
 	</section>

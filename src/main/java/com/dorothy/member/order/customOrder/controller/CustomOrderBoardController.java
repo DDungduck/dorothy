@@ -2,6 +2,8 @@ package com.dorothy.member.order.customOrder.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dorothy.common.vo.PageDTO;
+import com.dorothy.member.login.vo.MemberVO;
 import com.dorothy.member.order.customOrder.service.CustomOrderBoardService;
 import com.dorothy.member.order.customOrder.vo.CustomOrderBoardVO;
 
@@ -76,14 +79,21 @@ public class CustomOrderBoardController {
 	 * 요청 URL : http://localhost:8081/board/customOrder/customOrderWriteForm
 	 ***********************************************************/
 	@RequestMapping(value="/customOrderInsert", method = RequestMethod.POST)
-	public String customOrderInsert(CustomOrderBoardVO cobvo, Model model) throws Exception {
+	public String customOrderInsert(CustomOrderBoardVO cobvo, HttpSession session, Model model) throws Exception {
 		log.info("customOrderInsert 호출 성공");
+		System.out.println("CustomOrderBoardVO" + cobvo);
 		
 		int result = 0;
 		String url = "";
 		
-		/* 추후 세션으로 변경 */
-		cobvo.setM_id("abc123");
+		/* 추후 세션으로 변경
+		cobvo.setM_id("abc123"); */
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		cobvo.setM_id(member.getM_id());
+		
+		
+		cobvo.setC_inquiry("접수");
+		
 		
 		result = customOrderBoardService.customOrderInsert(cobvo);
 		if(result == 1) {

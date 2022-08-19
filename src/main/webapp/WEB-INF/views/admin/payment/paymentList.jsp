@@ -50,12 +50,14 @@
 							location.reload();
 						}
 					});
-
-// 				$("#cancelForm").attr({
-// 					"method":"post",
-// 					"action":"/admin/payment/paymentCancel"
-// 				});
-// 				$("#cancelForm").submit();
+			});
+			
+			$("#excelDown").click(function(){
+				$("#paymentSearch").attr({
+					"method":"get",
+					"action":"/admin/payment/paymentExcel"
+				});
+				$("#paymentSearch").submit();
 			});
 		}); // $ 함수 종료
 		
@@ -73,6 +75,26 @@
 	</head>
 	<body>
 		<div class="contentContainer container">
+			<%-- 검색 기능 시작 --%>
+			<div id="searchList" class="text-left">
+				<form id="paymentSearch" name="paymentSearch" class="form-inline">
+					<%-- 페이징 처리를 위한 파라미터 --%>
+					<input type="hidden" id="pageNum" name="pageNum" value="${pageMaker.cvo.pageNum}">
+					<input type="hidden" id="amount" name="amount" value="${pageMaker.cvo.amount}">
+					<div class="form-group">
+						<select id="search" name="search" class="form-control">
+							<option value="all">전체</option>
+							<option value="p_merchant_uid">주문번호</option>
+							<option value="m_id">구매자명</option>
+						</select>
+						<input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" class="form-control" />
+						<input type="button" value="검색" id="searchData" name="searchData" class="btn btn-success" />
+						<input type="button" value="Excel Download" id="excelDown" name="excelDown" class="btn btn-success" />
+					</div>
+				</form>
+			</div>
+			<%-- 검색 기능 종료 --%>
+			<br />
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -80,7 +102,7 @@
 						<th class="text-center col-md-4">주문내용</th>
 						<th class="text-center col-md-1">구매자명</th>
 						<th class="text-center col-md-1">결제금액</th>
-						<th class="text-center col-md-1">결제날짜</th>
+						<th class="text-center col-md-2">결제날짜</th>
 						<th class="text-center col-md-1">결제상태</th>
 						<th class="text-center col-md-1"></th>
 					</tr>
@@ -117,24 +139,6 @@
 			<form id="cancelForm">
 				<input type="hidden" id="merchant_uid" name="merchant_uid" />
 			</form>
-			<%-- 검색 기능 시작 --%>
-			<div id="searchList" class="text-center">
-				<form id="paymentSearch" name="paymentSearch" class="form-inline">
-					<%-- 페이징 처리를 위한 파라미터 --%>
-					<input type="hidden" id="pageNum" name="pageNum" value="${pageMaker.cvo.pageNum}">
-					<input type="hidden" id="amount" name="amount" value="${pageMaker.cvo.amount}">
-					<div class="form-group">
-						<select id="search" name="search" class="form-control">
-							<option value="all">전체</option>
-							<option value="p_merchant_uid">주문번호</option>
-							<option value="m_id">구매자명</option>
-						</select>
-						<input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" class="form-control" />
-						<input type="button" value="검색" id="searchData" name="searchData" class="btn btn-success" />
-					</div>
-				</form>
-			</div>
-			<%-- 검색 기능 종료 --%>
 			
 			<%-- 페이징 처리 커스텀 태그 --%>
 			<tag:pagination endPage="${pageMaker.endPage}" startPage="${pageMaker.startPage}" amount="${pageMaker.cvo.amount}" next="${pageMaker.next}" prev="${pageMaker.prev}" pageNum="${pageMaker.cvo.pageNum}" />

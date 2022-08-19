@@ -56,7 +56,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		int result = 0;
 		
 		if(bfvo.getFile().getSize() > 0) {
-			String fileName = FileUploadUtil.fileUpload(bfvo.getFile(), "board/free");
+			String fileName = FileUploadUtil.fileUpload(bfvo.getFile(), "free");
 			bfvo.setF_file(fileName);
 		}
 		
@@ -99,7 +99,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 				FileUploadUtil.fileDelete(bfvo.getF_file());
 			}
 			
-			String fileName = FileUploadUtil.fileUpload(bfvo.getFile(), "board/free");
+			String fileName = FileUploadUtil.fileUpload(bfvo.getFile(), "free");
 			bfvo.setF_file(fileName);
 		}
 		result = boardFreeDao.boardFreeUpdate(bfvo);

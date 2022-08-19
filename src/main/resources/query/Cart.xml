@@ -32,4 +32,8 @@
 		set gc_amount = #{gc_amount}
 		WHERE gc_num = #{gc_num}
 	</update>
+	
+	<select id="getCartNum" resultType="int">
+		SELECT cart_num_seq.currval FROM dual
+	</select>
 </mapper>

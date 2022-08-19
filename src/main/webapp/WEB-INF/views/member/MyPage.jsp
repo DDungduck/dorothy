@@ -9,7 +9,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$("#needLogin").click(function(){
+			$(".needLogin").click(function(){
 				alert("로그인이 필요한 메뉴입니다.")
 			});
 		});
@@ -20,21 +20,34 @@
 <div id = "mypage">
 	<ul class="mypage-list">
 	  <li>
-	    <a href ="#"><img
+	    <c:if test="${member == null }">
+	    <a class="needLogin" href ="#">
+	    </c:if>
+	  	<c:if test="${member != null }">
+	    <a href ="/member/order/orderInfoList">
+	    </c:if>
+	    <img
 	      class="mypage-img" 
 	      src="/resources/images/mypage/order.png"
 	      width= 80px; height= 80px;></a>
 	      <p class="text-center">ORDER<br /><br /><br /></p>
 	  </li>
 	  <li>
-	    <a href ="/member/profileUpdate"><img
+	  
+	  <c:if test="${member == null }">
+	    <a class="needLogin" href ="#">
+	    </c:if>
+	  	<c:if test="${member != null }">
+	    <a href ="/member/profileUpdate">
+	    </c:if>
+	    <img
 	      class="mypage-img"
 	      src="/resources/images/mypage/profile.png"
 	      width= 70px; height= 70px;></a>
 	      <p class="text-center">PROFILE<br />UPDATE<br /><br /><br /></p>
 	  </li>
 	  <li>
-	    <a href ="#"><img
+	    <a href ="/board/qna/myList"><img
 	      class="mypage-img" 
 	      src="/resources/images/mypage/qnareview.png"
 	      width= 100px; height= 100px;></a>
@@ -43,7 +56,7 @@
 	  </li>
 	  <li>
 	  	<c:if test="${member == null }">
-	    <a id="needLogin" href ="#">
+	    <a class="needLogin" href ="#">
 	    </c:if>
 	  	<c:if test="${member != null }">
 	    <a href ="/member/cart/cartList">

@@ -59,4 +59,14 @@
 		SET p_state = #{p_state}
 		WHERE p_merchant_uid = #{p_merchant_uid}
 	</update>
+	
+	<!-- 엑셀 다운로드 -->
+   <select id="paymentListExcel" parameterType="payment" resultType="payment">
+      SELECT p_merchant_uid, m_name as m_id, p_name, p_price, p_date, p_state
+      FROM payment p, member m
+      WHERE p.m_id = m.m_id
+      <where>
+         <include refid="paymentSearch"></include>
+      </where>
+   </select>
 </mapper>

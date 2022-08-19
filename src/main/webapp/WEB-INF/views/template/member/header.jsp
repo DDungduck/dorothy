@@ -3,13 +3,16 @@
 <%@ page trimDirectiveWhitespaces="true" %>	
 	<script type="text/javascript">
 		$(function(){
-			$("#cart").click(function(){
+			$(".needLogin").click(function(){
 				alert("로그인이 필요한 메뉴입니다.");
 			});
 		});
 	</script>
 	<div id="header">
 			<ul class="navi">
+				<li>
+					<a href="#" >&nbsp;</a>
+				</li>
 				<li><a href="#">CAKE</a>
 					<ul class="depth_1 sub">
 						<li>
@@ -19,7 +22,7 @@
 							<a href="/member/goods/goodsListLetter" >레터링 케이크</a>
 						</li>
 						<li>
-							<a href="/member/goods/goodsListAddition" >부가상품</a>
+							<a href="/member/goods/goodsListAddition" >추가상품</a>
 						</li>
 					</ul>
 				<li><a href="#">CUSTOM</a>
@@ -44,7 +47,7 @@
 							<a href="/board/qna/boardList">Q&amp;A</a>
 						</li>
 						<li>
-							<a href="#">REVIEW</a>
+							<a href="/board/review/boardReviewList">REVIEW</a>
 						</li>
 						<li>
 							<a href="/board/free/boardFreeList">FREE</a>
@@ -69,13 +72,25 @@
 							</c:if></li>
 						<li><a href="/member/register">JOIN</a></li>
 						<li><c:if test="${member == null }">
-								<a id="cart" href="#">CART</a>
+								<a class="needLogin" href="#">CART</a>
 							</c:if></li>
 								<li><c:if test="${member != null }">
 								<a href="/member/cart/cartList">CART</a>
 							</c:if></li>
-						<li><a href="#">ORDER</a></li>
-						<li><a href="/member/MyPage">MYPAGE</a></li>
+							
+							<li><c:if test="${member == null }">
+								<a class="needLogin" href="#">ORDER</a>
+							</c:if></li>
+								<li><c:if test="${member != null }">
+								<a href="/member/order/orderInfoList">ORDER</a>
+							</c:if></li>
+							
+						<li><c:if test="${member == null }">
+								<a class="needLogin" href="#">MYPAGE</a>
+							</c:if></li>
+								<li><c:if test="${member != null }">
+								<a href="/member/MyPage">MYPAGE</a>
+							</c:if></li>
 					</ul>
 				</div>
 			</div>

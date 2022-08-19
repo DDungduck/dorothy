@@ -11,5 +11,6 @@ public interface MemberCartDao {
 	public MemberCartVO getCart(int gc_num);
 	public int cartDelete(MemberCartVO mvco);
 	public int cartUpdate(MemberCartVO mvco);
+	public int getCartNum();
 
 }

@@ -38,5 +38,9 @@ public class MemberServiceImpl implements MemberService {
 		dao.memberUpdate(vo);
 		
 	}
+	@Override
+	public int idcheck(String m_id) throws Exception {
+		return dao.idcheck(m_id);
+	}
 
 }

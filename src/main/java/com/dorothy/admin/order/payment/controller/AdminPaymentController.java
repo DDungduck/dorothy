@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dorothy.admin.order.payment.service.AdminPaymentService;
+import com.dorothy.common.excel.ListExcelView;
 import com.dorothy.common.vo.PageDTO;
 import com.dorothy.member.payment.vo.PaymentVO;
 
@@ -40,6 +42,9 @@ public class AdminPaymentController {
 		int total = adminPaymentService.paymentListCnt(pvo);
 		model.addAttribute("pageMaker", new PageDTO(pvo, total));
 		
+		int count = total - (pvo.getPageNum() - 1) * pvo.getAmount();
+		model.addAttribute("count", count);
+		
 		return "admin/payment/paymentList";
 	}
 	
@@ -60,4 +65,22 @@ public class AdminPaymentController {
 		
 		return "admin/payment/paymentList";
 	}
+	
+	/***********************************************************
+	 * 엑셀 파일 다운로드
+	 * 요청 URL : http://localhost:8080/admin/payment/paymentExcel
+	 ***********************************************************/
+	  @RequestMapping(value="/paymentExcel", method = RequestMethod.GET) public
+	  ModelAndView paymentExcel(@ModelAttribute PaymentVO pvo) {
+		  log.info("paymentExcel 호출 성공");
+		  
+		  List<PaymentVO> paymentList = adminPaymentService.paymentListExcel(pvo);
+		  
+		  ModelAndView mv = new ModelAndView(new ListExcelView());
+		  mv.addObject("paymentList", paymentList);
+		  mv.addObject("template", "payment.xlsx");
+		  mv.addObject("file_name", "payment");
+		  
+		  return mv;
+	  }
 }

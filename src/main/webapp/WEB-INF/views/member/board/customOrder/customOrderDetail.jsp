@@ -45,8 +45,8 @@
 		<div class="contentContainer container">
 			<form name="c_data" id="c_data">
 				<input type="hidden" id="c_num" name="f_num" value="${customOrderDetail.c_num}" />
-				<%-- <input type="hidden" id="c_file" name="f_file" value="${bfDetail.f_file}" />
-				<input type="hidden" id="c_replycnt" name="f_replycnt" value="${bfDetail.f_replycnt}" /> --%>
+				<%-- <input type="hidden" id="c_file" name="f_file" value="${customOrderDetail.f_file}" />
+				<input type="hidden" id="c_replycnt" name="f_replycnt" value="${customOrderDetail.f_replycnt}" /> --%>
 			</form>
 		</div>
 
@@ -74,6 +74,10 @@
 						<td class="col-md-4">원하는 수령일</td>
 						<td colspan="3" class="col-md-8 text-left">${customOrderDetail.c_receiptdate}</td>
 					</tr>
+						<tr>
+						<td class="col-md-4">수량</td>
+						<td colspan="3" class="col-md-8 text-left">${customOrderDetail.c_amount}</td>
+					</tr>
 					<tr>
 						<td class="col-md-4">사이즈옵션</td>
 						<td colspan="3" class="col-md-8 text-left">${customOrderDetail.c_size}</td>
@@ -88,12 +92,13 @@
 					</tr>
 					<tr class="table-tr-height">
 						<td class="col-md-4">주문사항</td>
+						<td colspan="3" class="col-md-8 text-left">${customOrderDetail.c_content}</td>
+					</tr>
+					<tr class="table-tr-height">
+						<td class="col-md-4">첨부파일</td>
 						<td colspan="3" class="col-md-8 text-left">
-							${customOrderDetail.c_content}
 							<c:if test="${not empty customOrderDetail.c_file}">
-								<br />
-								<br />
-								<img src="/dorothyUpload/board/customOrder/${customOrderDetail.c_file}" />
+								<img src="/dorothyUpload/customOrder/${customOrderDetail.c_file}" />
 							</c:if>
 						</td>
 					</tr>

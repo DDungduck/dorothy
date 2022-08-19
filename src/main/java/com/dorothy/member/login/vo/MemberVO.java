@@ -18,6 +18,8 @@ public class MemberVO extends CommonVO {
 	private String m_mail;
 	private String m_pnb;
 	private String m_addr;
+	private String m_addr2;
+	private String m_addr3;
 	private Date m_date;
 	private int m_state;
 	public int m_states() {

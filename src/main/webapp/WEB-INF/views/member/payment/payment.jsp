@@ -29,7 +29,14 @@
 	  		
 	  		$("#goPaymentBtn").click(function(){
 	  			if(!chkData("#m_name", "수령인을")) return;
-	  			if(!chkData("#m_pnb", "연락처를")) return;
+	  			else if(!chkData("#m_pnb", "연락처를")) return;
+	  			
+	  			let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+	  			
+	  			if(!regPhone.test($("#m_pnb").val())){
+	  				alert("연락처는 01*-****-**** 형태로 입력해 주세요.");
+	  				return false;
+	  			}
 	  			
 	  			let merchant_uid = $("#p_merchant_uid").val();
 	  			let phone = $("#m_pnb").val();

@@ -1,5 +1,6 @@
 package com.dorothy.member.goods.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -57,9 +58,12 @@ public class MemberGoodsController {
 	@GetMapping(value="/goodsDetail")
 	public String goodsDetail(MemberGoodsVO gvo, Model model) {
 		log.info("goodsDetail 호출 성공");
-
+		
+		LocalDate today = LocalDate.now();
+		
 		MemberGoodsVO detail = memberGoodsService.goodsDetail(gvo);
 		model.addAttribute("detail", detail);
+		model.addAttribute("today", today.toString());
 		
 		return "member/goods/goodsDetail"; // /WEB-INF/views/member/goods/goodsDetail.jsp
 	}

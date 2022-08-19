@@ -29,7 +29,7 @@
 				<tbody>
 					<tr>
 						<td class="col-md-3">작성자</td>
-						<td class="col-md-3 text-left">${detail.ad_id}</td>
+						<td class="col-md-3 text-left">도로시케이크</td>
 						<td class="col-md-3">작성일</td>
 						<td class="col-md-3 text-left">${detail.e_date}</td>
 					</tr>

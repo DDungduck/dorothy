@@ -9,6 +9,7 @@ import com.dorothy.admin.reply.qna.dao.AdminReplyDao;
 import com.dorothy.common.file.FileUploadUtil;
 import com.dorothy.member.board.qna.dao.BoardDao;
 import com.dorothy.member.board.qna.vo.BoardVO;
+import com.dorothy.member.login.vo.MemberVO;
 
 import lombok.Setter;
 
@@ -140,6 +141,13 @@ public class BoardServiceImpl implements BoardService {
 		}
 		result = boardDao.boardUpdate(bvo);
 		return result;
+	}
+
+	@Override
+	public List<BoardVO> myList(MemberVO mvo) {
+		List<BoardVO> list = null;
+		list = boardDao.myList(mvo);
+		return list;
 	}
 
 	/*

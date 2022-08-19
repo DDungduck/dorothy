@@ -12,5 +12,9 @@ public interface CustomOrderBoardDao {
 	public int customOrderDelete(CustomOrderBoardVO cobvo) throws Exception;
 	public CustomOrderBoardVO customOrderupdateForm(CustomOrderBoardVO cobvo);
 	public int customOrderUpdate(CustomOrderBoardVO cobvo) throws Exception;
+	public int customOrderPriceupdate(CustomOrderBoardVO cobvo);
+	
+	
+
 	
 }

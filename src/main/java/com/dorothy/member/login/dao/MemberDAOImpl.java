@@ -31,5 +31,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public void memberUpdate(MemberVO vo) throws Exception {
 		sql.update("Member.memberUpdate", vo);
 	}
+	
+	// 아이디 중복체크
+	@Override
+	public int idcheck(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

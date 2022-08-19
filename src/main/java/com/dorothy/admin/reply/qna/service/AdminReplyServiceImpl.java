@@ -30,10 +30,7 @@ public class AdminReplyServiceImpl implements AdminReplyService {
 	public int replyInsert(AdminReplyVO rvo) {
 		int result = 0;
 		result = replyDao.replyInsert(rvo);
-		
-		if (result == 1) {
-			replyDao.statusUpdate(rvo); 			
-		}
+
 		return result;
 	}
 	

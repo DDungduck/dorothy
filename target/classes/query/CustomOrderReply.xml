@@ -12,4 +12,12 @@
 		order by rc_num desc
 	</select>
 	
+	<!-- 댓글 쓰기 -->
+	<insert id="replyCustomOrderInsert" parameterType="replyCustomOrder">
+		<selectKey keyProperty="rc_num" resultType="int" order="BEFORE">
+			SELECT reply_customorder_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO reply_customorder(rc_num, c_num, ad_id, rc_content)
+		VALUES(#{rc_num}, #{c_num}, #{ad_id}, #{rc_content})
+	</insert>
 </mapper>

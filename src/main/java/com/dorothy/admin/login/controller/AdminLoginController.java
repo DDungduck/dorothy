@@ -31,14 +31,14 @@ class AdminLoginController {
 		return new AdminLoginVO();
 	}
 	
-	/*로그인 화면*/
+	/*濡쒓렇�씤 �솕硫�*/
 	@GetMapping("/login")
 	public String loginForm() {
-		log.info("admin 로그인 화면 호출");
+		log.info("admin 濡쒓렇�씤 �솕硫� �샇異�");
 		
-		return "admin/adminLogin"; //WEB-INF/views/admin/adminLogin.jsp로 포워드
+		return "admin/adminLogin"; //WEB-INF/views/admin/adminLogin.jsp濡� �룷�썙�뱶
 	}
-	/*로그인 처리*/
+	/*濡쒓렇�씤 泥섎━*/
 	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
 	public void getLogin() throws Exception {
 		log.info("get login");
@@ -51,18 +51,18 @@ class AdminLoginController {
 		
 		if(adminLogin != null) {
 			model.addAttribute("adminLogin", adminLogin);
-			url = "/admin/adminMain";
+			url = "/admin/goods/goodsList";
 		}else {
-			ras.addFlashAttribute("errorMsg", "로그인 실패");
+			ras.addFlashAttribute("errorMsg", "濡쒓렇�씤 �떎�뙣");
 			url = "/admin/adminLogin";
 		}
 		return "redirect:"+url;
 	}
 	
-	/* 로그 아웃*/
+	/* 濡쒓렇 �븘�썐*/
 	@RequestMapping("/adminMain")
 	public String logout(SessionStatus sessionStatus) {
-		log.info("admin 로그아웃 처리");
+		log.info("admin 濡쒓렇�븘�썐 泥섎━");
 		sessionStatus.setComplete();
 		return "redirect:/admin/login";
 	}

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/dorothy/admin/login/controller/AdminLoginController.java=UTF-8
 encoding//src/main/java/com/dorothy/common/file/FileUploadUtil.java=UTF-8
 encoding//src/main/java/com/dorothy/member/login/controller/MemberController.java=UTF-8
 encoding//src/main/java/com/dorothy/member/login/dao/MemberDAO.java=UTF-8

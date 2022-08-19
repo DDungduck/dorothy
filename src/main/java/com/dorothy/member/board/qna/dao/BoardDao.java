@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.dorothy.member.board.qna.vo.BoardVO;
+import com.dorothy.member.login.vo.MemberVO;
 
 
 
@@ -21,4 +22,6 @@ public interface BoardDao {
 	public int boardUpdate(BoardVO bvo);
 	public BoardVO deleteVO(int q_num);
 	public int boardMyList(BoardVO bvo);
+
+	public List<BoardVO> myList(MemberVO mvo);
 }

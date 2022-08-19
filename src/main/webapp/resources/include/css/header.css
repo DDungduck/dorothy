@@ -41,7 +41,7 @@
     white-space:nowrap;
     float:left;
     width:33%;
-    margin-left: 40px;
+    margin-left: 60px;
 }
 #header .navi > li{position:relative;display:inline-block;height:72px}
 #header .navi > li + li{margin-left:20px}
@@ -151,6 +151,6 @@ ul, li {
 	list-style-type: none;
 }
 
-a {
+a, a:hover {
 	text-decoration: none;
 }

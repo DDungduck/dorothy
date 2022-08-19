@@ -275,10 +275,10 @@
 			</div> --%>
 			
 			
-			<%-- 페이징 처리를 커스텀태그(pagination)를 정의 
+			<!-- 페이징 처리를 커스텀태그(pagination)를 정의  -->
 			<tag:pagination pageNum="${pageMaker.cvo.pageNum}" amount="${pageMaker.cvo.amount}"
 			startPage="${pageMaker.startPage}" endPage="${pageMaker.endPage}"
-			prev="${pageMaker.prev}" next="${pageMaker.next}" /> --%>
+			prev="${pageMaker.prev}" next="${pageMaker.next}" />
 			 
 			 
 			

@@ -9,5 +9,6 @@ public interface PaymentDao {
 	public List<PaymentVO> paymentList(PaymentVO pvo);
 	public int paymentListCnt(PaymentVO pvo);
 	public int paymentSuccess(PaymentVO pvo);
-	public int paymentCancel(PaymentVO pvo); 
+	public int paymentCancel(PaymentVO pvo);
+	public List<PaymentVO> paymentListExcel(PaymentVO pvo); 
 }

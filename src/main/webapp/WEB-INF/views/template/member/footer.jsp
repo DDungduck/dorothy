@@ -3,7 +3,7 @@
 
 <div id="footer" class="container1 container--1680 pt-10 pb-20 pt-md-15 pb-md-30">
 		<div class="footer-logo mb-15 mb-md-8">
-			<img id="footerLogo" src="/resources/images/common/logo.png" alt="Dorothy Cake 특별한 날을 더욱 특별하게 " />
+			<img src="/resources/images/common/logo.png" alt="Dorothy Cake 특별한 날을 더욱 특별하게 " />
 		</div>
 
 		<div class="row">

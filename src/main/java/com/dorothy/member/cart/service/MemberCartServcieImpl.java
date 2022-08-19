@@ -50,5 +50,10 @@ public class MemberCartServcieImpl implements MemberCartService {
 		
 		return result;
 	}
+	@Override
+	public int getCartNum() {
+		
+		return memberCartDao.getCartNum();
+	}
 
 }

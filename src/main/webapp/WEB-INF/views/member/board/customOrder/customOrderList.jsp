@@ -2,7 +2,9 @@
 <%@ include file="/WEB-INF/views/common/common.jspf" %>
 		 
 		<style type="text/css">
-			
+			textarea { resize: none; }
+			.reply_count { color: red; font-size: small; }
+			.required { font-weight: bold; }
 		</style>
 		
 		<script type="text/javascript">
@@ -39,13 +41,13 @@
 				
 				/* 글쓰기 버튼 클릭 시 글쓰기 폼으로 이동 */
 				$("#insertFormBtn").click(function(){
-					/* 로그인 유효성 체크
-					if(){
+					/* 로그인 유효성 체크 */
+					if(${member == null}){
 						alert("회원만 작성할 수 있습니다.");
+						return;
+					}else{
+						location.href="/board/customOrder/customOrderWriteForm";
 					}
-					*/
-					
-					location.href="/board/customOrder/customOrderWriteForm";
 				});
 				
 				/* 입력 양식 enter 제거 */
@@ -66,12 +68,13 @@
 					if($("#search").val() != "all"){
 						if(!chkData("#keyword", "검색어를")) return;
 					}
+					$("#pageNum").val(1);
 					goPage();
 				});
 				
 				$(".paginate_button a").click(function(e){
 					e.preventDefault();
-					$("#freeSearch").find("input[name='pageNum']").val($(this).attr("href"));
+					$("#customOrderSearch").find("input[name='pageNum']").val($(this).attr("href"));
 					goPage();
 				});
 			}); // $ 함수 종료
@@ -85,7 +88,7 @@
 					"method":"get",
 					"action":"/board/customOrder/customOrderList"
 				});
-				$("#freeSearch").submit();
+				$("#customOrderSearch").submit();
 			}
 		</script>
 	</head>
@@ -137,30 +140,30 @@
 					</tbody>
 				</table>
 			</div> 
-			<%-- 자유게시판 리스트 종료 --%>
+			<%-- 커스텀 제품 주문 게시판 리스트 종료 --%>
 			
 			<%-- 검색 기능 시작 --%>
-			<%-- <div id="boardfreeSearch" class="text-center">
-				<form id="freeSearch" name="freeSearch" class="form-inline">
-					페이징 처리를 위한 파라미터
+			 <div id="boardCustomOrderSearch" class="text-center">
+				<form id="customOrderSearch" name="customOrderSearch" class="form-inline">
+					<%-- 페이징 처리를 위한 파라미터 --%>
 					<input type="hidden" name="pageNum" value="${pageMaker.cvo.pageNum}">
 					<input type="hidden" name="amount" value="${pageMaker.cvo.amount}">
 					<div class="form-group">
 						<select id="search" name="search" class="form-control">
 							<option value="all">전체</option>
-							<option value="f_title">제목</option>
-							<option value="f_content">내용</option>
+							<option value="c_title">제목</option>
+							<option value="c_content">내용</option>
 							<option value="m_id">작성자</option>
 						</select>
 						<input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" class="form-control" />
 						<input type="button" value="검색" id="searchData" name="searchData" class="btn btn-success" />
 					</div>
 				</form>
-			</div> --%>
+			</div> 
 			<%-- 검색 기능 종료 --%>
 			
 			<%-- 페이징 처리 커스텀 태그 --%>
-			<%-- <tag:pagination endPage="${pageMaker.endPage}" startPage="${pageMaker.startPage}" amount="${pageMaker.cvo.amount}" next="${pageMaker.next}" prev="${pageMaker.prev}" pageNum="${pageMaker.cvo.pageNum}" /> --%>
+			<tag:pagination endPage="${pageMaker.endPage}" startPage="${pageMaker.startPage}" amount="${pageMaker.cvo.amount}" next="${pageMaker.next}" prev="${pageMaker.prev}" pageNum="${pageMaker.cvo.pageNum}" /> 
 		</div>
 	</body>
 </html>

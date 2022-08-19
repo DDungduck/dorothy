@@ -41,7 +41,7 @@
 
   <body>
 	<!-- top -->
-	<%-- <tiles:insertAttribute name="top" /> --%>
+	<tiles:insertAttribute name="top" />
     <!-- header -->
     <tiles:insertAttribute name="header" />	<br /><br /><br /><br /><br /><br />
 	<div class="container">
@@ -88,9 +88,11 @@
    </div>
     <div class="img_top text-center"><img src="/resources/images/common/adminLogo.png"  alt="BRAND 로고" title="BRAND 로고"   /></div>
    <div class="company_textbox text-center">
-        <p>Dorothy Cake는 정성스러운 선물 케이크를 제작합니다.<br>진실, 감사의 의미를 담은 코럴색상과 제비꼬치 모양의 리본을 사용한 로고는<br>많은 분들의 소중한 순간, 순간에 정성스럽고 진실된 선물로 다가가려는<br>라니케이크의 진심이 담겨있습니다.<br></p>
+        <p>Dorothy Cake는 정성스러운 선물 케이크를 제작합니다.<br>진실, 감사의 의미를 담은 코럴색상과 제비꼬치 모양의 리본을 사용한 로고는<br>많은 분들의 소중한 순간, 순간에 정성스럽고 진실된 선물로 다가가려는<br>도로시케이크의 진심이 담겨있습니다.<br></p>
         <p><br>신선하고 질 좋은 최고급 재료만을 엄선하여<br>전문 파티쉐가 재료 손질부터 포장까지 직접 모든 과정을 함께 합니다.<br>모든 순간에 누가 되지 않도록, 정성을 담아 제작할 것을 약속합니다.</p>
     </div>
+   <!--  <p class="text-center"><a class="btn btn-default" href="/admin/login" role="button">
+				관리자 로그인 &raquo;</a></p> -->
 				<br /><br /><br /><br /><br /><br />
 
   

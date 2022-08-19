@@ -17,7 +17,7 @@
     <link href="/resources/include/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <!-- <link href="/resources/include/dist/css/dashboard.css" rel="stylesheet"> -->
+    <link href="/resources/include/dist/css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -58,8 +58,8 @@
 
   <body>
     <div class="container">
-      <form class="form-signin" id="loginForm">
-        <h2 class="form-signin-heading">관리자 로그인</h2>
+      <form class="form-signin" id="loginForm" style="width: 50%; position :absolute; top:30%; left:50%; transform: translate(-50%, -50%)">
+        <h2 class="form-signin-heading text-center">관리자 로그인</h2>
         <label for="adminid" class="sr-only">아이디</label>
         <input type="text" id="ad_id" name="ad_id" class="form-control" placeholder="아이디">
         

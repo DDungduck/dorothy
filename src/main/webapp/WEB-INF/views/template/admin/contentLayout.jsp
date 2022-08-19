@@ -19,7 +19,7 @@
     <link href="/resources/include/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <!-- <link href="/resources/include/dist/css/dashboard.css" rel="stylesheet"> -->
+<!--     <link href="/resources/include/dist/css/dashboard.css" rel="stylesheet"> -->
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -31,7 +31,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="/resources/include/css/admin.css" />
-    <!-- <script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script> -->
+    <script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="/resources/include/js/common.js"></script>
     <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.17/tailwind.min.css">
@@ -40,7 +40,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/include/css/admin.css" />
   </head>
-  <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0">
+  <body>
 	<div class="All-box flex">
 		<tiles:insertAttribute name="left" />	
 	<div class="w-full">
@@ -48,14 +48,16 @@
 				<!--요소 시작-->
 		<div class="Side-Box hei-51 bg-4F6884 flex items-center px-6">
 			<div class="flex items-center text-white">
-		</div>
+				
+				
+			</div>
 			<div class="flex-1"></div>
 			<div>
 				<div class="flex items-center">
 					<span class="text-base text-white mr-1"> <i
 						class="fas fa-users"></i>
 					</span> 
-					<span class="text-sm text-white font-bold"><tiles:getAsString name="title" /></span><span
+					<span class="text-white font-bold"><tiles:getAsString name="title" /></span><span
 						class="text-sm text-white font-bold">
 					</span>
 				</div>
