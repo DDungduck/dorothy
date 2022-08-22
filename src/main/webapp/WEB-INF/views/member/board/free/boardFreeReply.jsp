@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/common.jspf" %>
+<%@ page import="com.dorothy.member.login.vo.MemberVO" %>
 	
 		<style type="text/css">
 			#item-template{ display: none; }
@@ -122,13 +123,24 @@
 			/* 새로운 글을 화면에 추가하기 위한 함수 */
 			function template(rf_num, m_id, rf_content, rf_date) {
 				let $div = $("#replyFreeList");
+				<%
+					MemberVO member = (MemberVO)session.getAttribute("member");
+					String m_nick = null;
+					if(member != null){
+						 m_nick = member.getM_nick();	
+					}
+				%>
+				let nickname = "<%= m_nick %>";
 				
 				let $element = $("#item-template").clone().removeAttr("id");
 				$element.attr("data-num", rf_num);
 				$element.addClass("reply");
 				$element.find(".panel-heading > .panel-title > .nick").html(m_id + " 님");
 				$element.find(".panel-heading > .panel-title > .date").html(" / " + rf_date);
-				
+				if(${member == null} || nickname != m_id){
+					$element.find(".panel-heading > .panel-title > .upBtn").remove();
+					$element.find(".panel-heading > .panel-title > .delBtn").remove();
+				}
 				$element.find(".panel-body").html(rf_content);
 				$div.append($element);
 			}
