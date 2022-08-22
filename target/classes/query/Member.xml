@@ -29,4 +29,12 @@
 		m_addr3 = #{m_addr3}
 		WHERE m_id = #{m_id}
 	</update>
+	
+	<!-- 아이디 중복체크 --> 
+	<select id="idcheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM member
+      WHERE
+          m_id = #{m_id}
+	</select>
+	
 </mapper>

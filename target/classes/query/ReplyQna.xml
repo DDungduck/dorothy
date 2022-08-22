@@ -54,10 +54,12 @@
 	</update>
 	
 	<!--  글에 포함된 댓글 모두 삭제 -->
-   <delete id="replyAllDelete" parameterType="int">
-      DELETE FROM reply_qna
-      WHERE q_num = #{q_num}
-   </delete>
+	<delete id="replyAllDelete" parameterType="int">
+		DELETE FROM reply_qna
+		WHERE q_num = #{q_num}
+	</delete>
+	
+	
 	
 
 	

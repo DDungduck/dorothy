@@ -39,7 +39,7 @@
 										<img class="goodsImg" src="/dorothyUpload/goods/${goods.g_file }" />
 										<p class="text-center">
 											${goods.g_name }<br />
-											${goods.g_price }<br />
+											${goods.g_price }원<br />
 											&nbsp;
 											<c:if test="${goods.g_recommend eq '1'}">
 												<img src="/resources/images/goods/icon/recommend.gif" />

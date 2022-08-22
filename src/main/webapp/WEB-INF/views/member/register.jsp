@@ -4,6 +4,45 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	$(function(){
+		//idck 버튼을 클릭했을 때 
+	    $("#idck").click(function() {
+	        //userid 를 param.
+	        var m_id =  $("#m_id").val(); 
+	        
+	        $.ajax({
+	            async: true,
+	            type : 'POST',
+	            data : m_id,
+	            url : "idcheck",
+	            dataType : "json",
+	            contentType: "application/json; charset=UTF-8",
+	            success : function(data) {
+	                if (data.cnt > 0) {
+	                    
+	                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+	                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+	                    $("#divInputId").addClass("has-error")
+	                    $("#divInputId").removeClass("has-success")
+	                    $("#m_id").focus();
+	                    
+	                
+	                } else {
+	                    alert("사용가능한 아이디입니다.");
+	                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+	                    $("#divInputId").addClass("has-success")
+	                    $("#divInputId").removeClass("has-error")
+	                    $("#m_pwd").focus();
+	                    //아이디가 중복하지 않으면  idck = 1 
+	                    idck = 1;
+	                    
+	                }
+	            },
+	            error : function(error) {
+	                
+	                alert("error : " + error);
+	            }
+	        });
+	    });
 		$("#registerBtn").click(function(){
 			// 입력값 유효성 체크
 				if(!chkData("#m_id", "아이디를")) return;
@@ -14,7 +53,12 @@
 				else if(!chkData("#m_addr", "주소를")) return;
 				else if(!chkData("#m_addr2", "주소를")) return;
 				else if(!chkData("#m_addr3", "주소를")) return;
-				else{	
+				else if(confirm("회원가입을 하시겠습니까?")){
+			        if(idck==0){
+			            alert('아이디 중복체크를 해주세요');
+			            return false;
+			        }else{
+					alert("회원가입을 축하합니다")
 					$("#register").attr({
 						"method":"post",
 						"action":"/member/register"
@@ -22,13 +66,14 @@
 					
 					$("#register").submit();
 				}
-			});
-		/* 취소 버튼 클릭 시 폼 리셋 */
-		$("#registerCancelBtn").click(function(){
-			$("#register").each(function(){
-				this.reset();
-			});
+			}
 		});
+	/* 취소 버튼 클릭 시 폼 리셋 */
+	$("#registerCancelBtn").click(function(){
+		$("#register").each(function(){
+			this.reset();
+		});
+	});
 	});
 	// 주소 api
 	function execPostCode() {
@@ -79,8 +124,9 @@
 		<form id ="register" name ="register" class="form-horizonta" style="width: 50%; margin: auto;">
 		<!-- <form action="/member/register" method="post"> -->
 			<div class="form-group has-feedback" id = "divInputId">
-				<label class="control-label" for="m_id">아이디</label> <input 
-					class="form-control"  type="text" id="m_id" name="m_id">	
+				<label class="control-label" for="m_id">아이디</label><br /> <input 
+					class="form-control"  type="text" id="m_id" name="m_id" style="width: 85%; display: inline;">
+				<input type="button" class="btn btn-default" value="중복확인" id="idck" name="idck"/>	
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="m_pwd">비밀번호</label> <input

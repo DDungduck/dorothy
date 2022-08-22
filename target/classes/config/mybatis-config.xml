@@ -19,6 +19,7 @@
 		
 		<typeAlias type="com.dorothy.member.payment.vo.PaymentVO" alias="payment" />
 		<typeAlias type="com.dorothy.member.order.orderInfo.vo.OrderInfoVO" alias="order" />
+		<typeAlias type="com.dorothy.member.order.orderInfo.vo.OrderInfoDTO" alias="orderDto" />
 		
 		<typeAlias type="com.dorothy.admin.reply.review.vo.AdminReplyReviewVO" alias="adminReplyReview" />
 		<typeAlias type="com.dorothy.member.board.review.vo.BoardReviewVO" alias="boardReview"/>

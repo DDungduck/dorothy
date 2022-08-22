@@ -64,7 +64,7 @@
 			/* 댓글 삭제 */
 			$(document).on("click", ".delBtn > img", function(){
 				let rq_num = $(this).parents("div.panel").attr("data-num");
-				deleteReply(q_num, rq_num);
+				deleteBtn(q_num, rq_num);
 			});
 			
 			/* 댓글 수정 폼 호출 */

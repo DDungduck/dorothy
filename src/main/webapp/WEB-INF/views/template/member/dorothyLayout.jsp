@@ -53,16 +53,16 @@
         
         <ul class="slidelist">
             <li class="slideitem">
-                <a><img src="/resources/images/main/mainimg1.jpg" border="0" width= 100% height="500"></a>
+                <a href="/member/goods/goodsListLetter"><img src="/resources/images/main/mainimg1.jpg" border="0" width= 100% height="500"></a>
             </li>
             <li class="slideitem">
-                <a><img src="/resources/images/main/mainimg2.jpg" border="0" width= 100% height="500"></a>
+                <a href="/member/goods/goodsDetail?g_code=25"><img src="/resources/images/main/mainimg2.jpg" border="0" width= 100% height="500"></a>
             </li>
             <li class="slideitem">
-                <a><img src="/resources/images/main/mainimg3.jpg" border="0" width= 100% height="500"></a>
+                <a href="/member/goods/goodsDetail?g_code=41"><img src="/resources/images/main/mainimg3.jpg" border="0" width= 100% height="500"></a>
             </li>
             <li class="slideitem">
-                <a><img src="/resources/images/main/mainimg4.jpg" border="0" width= 100% height="500"></a>
+                <a href="/member/goods/goodsList"><img src="/resources/images/main/mainimg4.jpg" border="0" width= 100% height="500"></a>
             </li>
             
         </ul>
