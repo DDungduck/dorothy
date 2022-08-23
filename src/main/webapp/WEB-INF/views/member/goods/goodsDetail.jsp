@@ -32,8 +32,12 @@
 					if(${member != null}) {
 						addFrmInfo();
 						
+						let g_type = parseInt($("#frmCart").find("input[name=g_type]").val());
+						
 						if(!chkData("#date", "날짜를")) return;
-						else if(!chkData("#size", "사이즈를")) return;
+						else if(g_type != 3){
+							if(!chkData("#size", "사이즈를")) return;
+						}
 						
 						$("#frmCart").attr({"method" : "post", "action" : "/member/cart/goCart"});
 	 					$("#frmCart").submit();
@@ -48,7 +52,9 @@
 						addFrmInfo();
 						
 						if(!chkData("#date", "날짜를")) return;
-						else if(!chkData("#size", "사이즈를")) return;
+						else if(g_type != 3){
+							if(!chkData("#size", "사이즈를")) return;
+						}
 						
 						$("#frmCart").attr({"method" : "post", "action" : "/member/cart/goPayment"});
 	 					$("#frmCart").submit();
@@ -89,12 +95,18 @@
 			});
 			
 			function addFrmInfo(){
+				let g_type = parseInt($("#frmCart").find("input[name=g_type]").val());
+				
 				let gc_amount = $("#amount").val();
 				$("input[name='gc_amount']").val(gc_amount);
 				m_id = "${member.m_id}";
 				$("input[name='m_id']").val(m_id);
-				let g_size = $("#size").val();
-				$("input[name='g_size']").val(g_size);
+				if(g_type != 3){
+					let g_size = $("#size").val();
+					$("input[name='g_size']").val(g_size);
+				} else{
+					$("input[name='g_size']").val(1);
+				}
 			}
 			
 		</script>
