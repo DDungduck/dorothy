@@ -147,8 +147,8 @@
 
 			<form name="f_data" id="f_data" method="post">
 				<input type="hidden" id="q_num" name="q_num" value="${detail.q_num}" />
-				<input type="hidden" id= "q_file"name="q_file" value="${detail.q_file}" />
-				<input type="hidden" id="q_replycnt" name="q_replycnt" value="${Detail.q_replycnt}" />
+<%-- 				<input type="hidden" id= "q_file"name="q_file" value="${detail.q_file}" />
+				<input type="hidden" id="q_replycnt" name="q_replycnt" value="${Detail.q_replycnt}" /> --%>
 			</form>
 		</div>
 		

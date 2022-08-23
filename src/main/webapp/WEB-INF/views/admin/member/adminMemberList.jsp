@@ -94,13 +94,12 @@
 					<thead>
 						<tr>
 							<th class="text-center col-md-1">아이디</th>
-							<th class="text-center col-md-2">비밀번호</th>
 							<th class="text-center col-md-2">이름</th>
 							<th class="text-center col-md-2">주소</th>
+							<th class="text-center col-md-2">상세주소</th>
 							<th class="text-center col-md-2">이메일</th>
 							<th class="text-center col-md-2">휴대폰번호</th>
 							<th class="text-center col-md-3">가입일</th>
-							<th class="text-center col-md-3">유형</th>
 							<th class="text-center col-md-1">관리</th>
 						</tr>
 					</thead>
@@ -111,13 +110,12 @@
 								<c:forEach var="adminMember" items="${adminMemberList}" varStatus="status">
 									<tr class="text-center" data-id="${adminMember.m_id}">
 										<td class="m_id text-center">${adminMember.m_id}</td>
-										<td class="text-center">${adminMember.m_pwd}</td>
 										<td class="goDetail text-center">${adminMember.m_name}</td>
-										<td class="text-center">${adminMember.m_addr}</td>
+										<td class="text-center">${adminMember.m_addr2}</td>
+										<td class="text-center">${adminMember.m_addr3}</td>
 										<td class="text-center">${adminMember.m_mail}</td>
 										<td class="text-center">${adminMember.m_pnb}</td>
 										<td class="text-center">${adminMember.m_date}</td>
-										<td class="text-center">${adminMember.m_state}</td>
 										<td class="text-center">
    											<c:if test="${adminMember.m_state==0}">
        											<input type="button" value="탈퇴" id="adminMemberUpdateBtn" class="btn btn-danger">

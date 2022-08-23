@@ -115,7 +115,7 @@
 									</td>
 									<td class="text-center">${cart.g_name}</td>
 									<td class="text-center">${cart.gc_amount}</td>
-									<td class="text-center">${cart.g_price}</td>
+									<td class="text-center">${cart.gc_amount * cart.g_price}</td>
 								</tr>
 								<c:set var="allPrice" value="${allPrice + cart.gc_amount * cart.g_price}" />
 								<c:if test="${status.first}">
@@ -132,7 +132,7 @@
 			
 			<hr />
 			
-			<%-- 배송지 / 주문인 정보 시작 --%>
+			<%-- 주문자 정보 시작 --%>
 			<div id="" class="table-height">
 				<table class="table table-condensed">
 					<tr>

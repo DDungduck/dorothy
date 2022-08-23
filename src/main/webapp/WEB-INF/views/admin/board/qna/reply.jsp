@@ -62,7 +62,7 @@
 			});
 			
 			/* 댓글 삭제 */
-			$(document).on("click", ".delBtn > img", function(){
+			$(document).on("click", ".delBtn > a", function(){
 				let rq_num = $(this).parents("div.panel").attr("data-num");
 				deleteBtn(q_num, rq_num);
 			});

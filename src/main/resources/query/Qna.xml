@@ -152,7 +152,7 @@
 				<![CDATA[q_content LIKE '%' || #{keyword} || '%']]>
 			</if>
 			 <if test="search == 'm_id '">
-				<![CDATA[ bq.m_id = (SELECT m_id FROM member WHERE m_nick LIKE '%' || #{keyword} || '%' ) ]]>
+				<![CDATA[ m.m_nick LIKE '%' || #{keyword} || '%']]>
 			</if> 
 	</sql>
 	
