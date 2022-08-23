@@ -84,7 +84,7 @@
 	
 	<select id="goodsListExcel" parameterType="goods" resultType="goods">
 		SELECT /*+ INDEX_DESC(goods goods_pk) */
-		g_code, g_name, g_type, g_price
+		g_code, g_name, g_type, g_price, g_file, g_new, g_recommend
 		FROM goods
 		<where>
 			<include refid="goodsSearch"></include>
