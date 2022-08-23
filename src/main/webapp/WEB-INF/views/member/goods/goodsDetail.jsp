@@ -115,6 +115,7 @@
 						<input type="hidden" name="g_name" value="${detail.g_name }" />
 						<input type="hidden" name="g_file" value="${detail.g_file }" />
 						<input type="hidden" name="g_size" value="" />
+						<input type="hidden" name="g_type" value="${detail.g_type }" />
 					</form>
 				</div>
 				<h4 class="text-left">${detail.g_name }</h4>
@@ -147,17 +148,20 @@
 								<span>*토요일은 선택하신 시간대와 관계없이 14시-20시에만 배송됩니다.</span>
 							</td>
 						</tr> -->
-						<tr>
-							<th class="text-center">호수</th>
-							<td>
-								<select id="size">
-									<option value="" selected="selected">= 옵션 : 가격 =</option>
-									<option value="1">미니</option>
-									<option value="2">1호</option>
-								</select>
-								<span>*1호를 선택하시면 금액이 1만원 추가됩니다*</span>
-							</td>
-						</tr>
+						<c:if test="${detail.g_type ne 3 }">
+							<tr>
+								<th class="text-center">호수</th>
+								<td>
+									<select id="size">
+										<option value="" selected="selected">= 옵션 : 가격 =</option>
+										<option value="1">미니</option>
+										<option value="2">1호</option>
+									</select>
+									<span>*1호를 선택하시면 금액이 1만원 추가됩니다*</span>
+								</td>
+							</tr>
+						</c:if>
+						
 						<tr>
 							<th class="text-center">수량</th>
 							<td>
