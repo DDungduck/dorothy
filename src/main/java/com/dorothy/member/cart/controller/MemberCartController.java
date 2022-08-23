@@ -49,6 +49,7 @@ public class MemberCartController {
 		int result = 0;
 		
 		result = memberCartService.cartInsert(mvco);
+		log.info(mvco.toString());
 		if(result == 1) {
 			goPage = cartList(mvco, req, model);
 		}else {

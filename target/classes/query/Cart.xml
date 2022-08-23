@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dorothy.member.cart.dao.MemberCartDao">
 	<select id="cartList" parameterType="member" resultType="cart">
-		SELECT gc_num, c.g_code, gc_amount, c.m_id, g.g_price, c.g_size, g_name, g_file
+		SELECT gc_num, c.g_code, gc_amount, c.m_id, c.g_price, c.g_size, g_name, g_file
 		FROM cart c left outer join member m on c.m_id = m.m_id left outer join goods g on c.g_code = g.g_code
 		WHERE c.m_id = #{m_id}
 	</select>

@@ -21,6 +21,7 @@
 		.goods_tab ul{display: inline-block; width: auto; height: 57px; padding: 40px;}
 		.goods_tab li {float: left; width: 220px; margin-left: -1px; }
 		.DetailInfo p, h3{text-align : center; margin : 30px;}
+		.goodsImgSmall{width : 50px; height : 50px;}
 	</style>
 		<title>상품 상세페이지</title>
 		<script type="text/javascript">
@@ -56,6 +57,35 @@
 						alert("로그인 하신 후 이용할 수 있습니다.");
 					}
 				});
+				
+				$("#size").change(function(){
+					let g_price = parseInt($("#frmCart").find("input[name=g_price]").val());
+					if($("#size").val() == 2){
+						g_price += 10000;
+						$("#frmCart").find("input[name=g_price]").val(g_price);
+						console.log($("#frmCart").find("input[name=g_price]").val());
+					}
+				});
+				
+				$("#amount").change(function(){
+					if($("#size").val() != ""){
+						let totalPrice = 0;
+						let goodsPrice = 0;
+						let goodsAmount = 0;
+						
+						goodsPrice = parseInt($("#frmCart").find("input[name=g_price]").val());
+						console.log(goodsPrice);
+						goodsAmount = parseInt($("#amount").val());
+						console.log(goodsAmount);
+						totalPrice = goodsPrice * goodsAmount;
+						
+						$("#totalGoodsCnt").html(goodsAmount);
+						$("#totalGoodsPrice").html(totalPrice);
+					} else{
+						alert("사이즈를 먼저 입력해주세요.");
+						$("#size").focus();
+					}
+				});
 			});
 			
 			function addFrmInfo(){
@@ -66,6 +96,7 @@
 				let g_size = $("#size").val();
 				$("input[name='g_size']").val(g_size);
 			}
+			
 		</script>
 	</head>
 	<body>
@@ -124,6 +155,7 @@
 									<option value="1">미니</option>
 									<option value="2">1호</option>
 								</select>
+								<span>*1호를 선택하시면 금액이 1만원 추가됩니다*</span>
 							</td>
 						</tr>
 						<tr>
@@ -141,6 +173,19 @@
 						<input id="addCartBtn" type="button" value="ADD TO CART" />
 						<input id="buyBtn" type="button" value="BUY NOW" />
 					</div>
+				</div>
+	                 <div class="price_sum">
+	                 	<br />
+	                     <dl>
+	                         <dt>총 <strong id="totalGoodsCnt">0</strong> 개의 상품금액 </dt>
+	                         <dd><strong id="totalGoodsPrice">0</strong>원</dd>
+	                     </dl>
+	                 </div>
+	                 <br />
+	                 <br />
+				<div id="imgs-s">
+					<img class="goodsImgSmall" src="/dorothyUpload/goods/${detail.g_file }" />
+					<img class="goodsImgSmall" src="/dorothyUpload/goodsDetail/1-${detail.g_file }" />
 				</div>
 			</div>
 		</div>
