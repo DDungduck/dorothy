@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dorothy.admin.reply.review.dao.AdminReplyReviewDao">
+	<select id="replyReviewList" parameterType="adminReplyReview" resultType="adminReplyReview">
+		SELECT rr_num, r_num, ad_id, rr_content, TO_CHAR(rr_date, 'YYYY-MM-DD HH24:MI:SS') as rr_date
+		FROM reply_review
+		WHERE r_num = #{r_num}
+		ORDER BY rr_num DESC
+	</select>
+	
+	<!-- 자유게시판 댓글 쓰기 -->
+	<insert id="replyReviewInsert" parameterType="adminReplyReview">
+		<selectKey keyProperty="rr_num" resultType="int" order="BEFORE">
+			SELECT reply_review_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO reply_review(rr_num, r_num, ad_id, rr_content)
+		VALUES(#{rr_num}, #{r_num}, #{ad_id}, #{rr_content})
+	</insert>
+</mapper>
