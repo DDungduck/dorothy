@@ -67,13 +67,18 @@
 				
 				/* 삭제 버튼 클릭 시 선택한 글 삭제 */
 				$("#deleteFormBtn").click(function(){
+					let numArr = [];
+					
+					$("input:checkbox[name=deleteCheck]:checked").each(function(){
+						numArr.push($(this).val());
+					});
+					
+					if(numArr.length == 0) {
+						alert("삭제를 원하시는 항목을 선택하여주십시오.");
+						return;
+					}
+					
 					if(confirm("정말 삭제하시겠습니까?")){
-						let numArr = [];
-						
-						$("input:checkbox[name=deleteCheck]:checked").each(function(){
-							numArr.push($(this).val());
-						});
-						
 						
 						$.ajax({
 							url: "/admin/goods/deleteAll",
