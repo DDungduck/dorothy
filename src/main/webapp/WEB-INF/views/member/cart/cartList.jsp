@@ -142,13 +142,6 @@
         <form id="paymentForm">
         	<input type="hidden" name="codeList" id="codeList" />
         </form>
-            <h2 class= "text-center">CART</h2>
-            <hr />
-<!--             <ol>
-                <li class="page_on"><span>01</span> 장바구니 <span><img src="https://cdn-pro-web-250-122-godomall.spdycdn.net/ranicatr2992_godomall_com/data/skin/front/jeonyul_200918/img/member/icon_join_step_on.png" alt=""></span></li>
-                <li><span>02</span> 주문서작성/결제<span><img src="https://cdn-pro-web-250-122-godomall.spdycdn.net/ranicatr2992_godomall_com/data/skin/front/jeonyul_200918/img/member/icon_join_step_off.png" alt=""></span></li>
-                <li><span>03</span> 주문완료</li>
-            </ol> -->
         </div>
         <!-- //order_tit -->
 
