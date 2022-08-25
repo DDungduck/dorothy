@@ -58,14 +58,18 @@
 
   <body>
     <div class="container">
-      <form class="form-signin" id="loginForm" style="width: 50%; position :absolute; top:30%; left:50%; transform: translate(-50%, -50%)">
-        <h2 class="form-signin-heading text-center">관리자 로그인</h2>
+      <form class="form-signin" id="loginForm" style="width: 30%; position :absolute; top:30%; left:50%; transform: translate(-50%, -50%)">
+        <h2 class="form-signin-heading text-center">관리자 로그인</h2><br /><br /><br />
         <label for="adminid" class="sr-only">아이디</label>
         <input type="text" id="ad_id" name="ad_id" class="form-control" placeholder="아이디">
         
         <label for="ad_pwd" class="sr-only">비밀번호</label>
         <input type="password" id="ad_pwd" name="ad_pwd" class="form-control" placeholder="비밀번호">
-        <button class="btn btn-lg btn-primary btn-block" type="button" id="loginBtn">로그인</button>
+        <button class="btn btn-success btn-block" type="button" id="loginBtn">로그인</button>
+		<br /><br /><br />
+        <a href="/">
+      		<button class="btn btn-success btn-block" type="button" id="mainBtn">메인으로 가기</button>
+      	</a>
       </form>
     </div> <!-- /container -->
 
