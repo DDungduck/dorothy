@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dorothy.common.vo.PageDTO;
+
 import com.dorothy.member.board.review.service.BoardReviewService;
 import com.dorothy.member.board.review.vo.BoardReviewVO;
 
@@ -57,6 +59,99 @@ public class BoardReviewController {
 		return "member/board/review/boardReviewDetail"; // /WEB-INF/views/member/board/review/boardReviewDetail.jsp
 	}
 	
+	/***********************************************************
+	 * 리뷰게시판 글쓰기 폼 출력
+	 * 요청 URL : http://localhost:8081/board/review/reviewWriteForm
+	 ***********************************************************/
+	@RequestMapping(value="/reviewWriteForm")
+	public String reviewWriteForm(@ModelAttribute("data") BoardReviewVO brvo) {
+		log.info("reviewWriteForm 호출 성공");
+		
+		return "member/board/review/reviewWriteForm"; // /WEB-INF/views/member/board/review/reviewWriteForm.jsp
+	}
+	
+	/***********************************************************
+	 * 리뷰게시판 글쓰기
+	 * 요청 URL : http://localhost:8081/board/review/reviewWriteForm
+	 ***********************************************************/
+	@RequestMapping(value="/boardReviewInsert", method = RequestMethod.POST)
+	public String boardReviewInsert(BoardReviewVO brvo, Model model) throws Exception {
+		log.info("boardReviewInsert 호출 성공");
+		
+		int result = 0;
+		String url = "";
+		
+		result = boardReviewService.boardReviewInsert(brvo);
+		if(result == 1) {
+			url = "/board/review/boardReviewList";
+		}else {
+			url = "board/review/reviewWriteForm";
+		}
+		
+		return "redirect:" + url;
+	}
+	
+	/***********************************************************
+	 * 리뷰게시판 글 삭제
+	 * 요청 URL : http://localhost:8081/board/review/boardReviewDelete
+	 ***********************************************************/
+	@RequestMapping(value="/boardReviewDelete", method = RequestMethod.POST)
+	public String boardReviewDelete(@ModelAttribute BoardReviewVO brvo, RedirectAttributes ras) throws Exception {
+		log.info("boardReviewDelete 호출 성공");
+		
+		int result = 0;
+		String url = "";
+		
+		result = boardReviewService.boardReviewDelete(brvo);
+		ras.addFlashAttribute("BoardReviewVO", brvo);
+		
+		if(result == 1) {
+			url = "/board/review/boardReviewList";
+		}else {
+			url = "/board/review/boardReviewDetail";
+		}
+		
+		return "redirect:" + url;
+	}
+	
+	/***********************************************************
+	 * 리뷰게시판 글 수정 폼 출력
+	 * 요청 URL : http://localhost:8081/board/review/reviewUpdateForm
+	 ***********************************************************/
+	@RequestMapping(value="/reviewUpdateForm")
+	public String reviewUpdateForm(@ModelAttribute("data") BoardReviewVO brvo, Model model) {
+		log.info("reviewUpdateForm 호출 성공");
+		log.info("r_num" + brvo.getR_num());
+		
+		BoardReviewVO updateData = boardReviewService.reviewUpdateForm(brvo);
+		
+		model.addAttribute("updateData", updateData);
+		
+		return "member/board/review/reviewUpdateForm";
+	}
+	
+	/***********************************************************
+	 * 리뷰게시판 글 수정
+	 * 요청 URL : http://localhost:8081/board/review/boardReviewUpdate
+	 ***********************************************************/
+	@RequestMapping(value="/boardReviewUpdate", method = RequestMethod.POST)
+	public String boardReviewUpdate(@ModelAttribute BoardReviewVO brvo, RedirectAttributes ras) throws Exception {
+		log.info("boardReviewUpdate 호출 성공");
+		
+		int result = 0;
+		String url = "";
+		
+		result = boardReviewService.boardReviewUpdate(brvo);
+		ras.addFlashAttribute("data", brvo);
+		
+		if(result == 1) {
+			url = "/board/review/boardReviewDetail";
+		}else {
+			url = "/board/review/reviewUpdateForm";
+		}
+		
+		return "redirect:" + url;
+	}
 	
 
 }

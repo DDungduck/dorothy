@@ -3,6 +3,7 @@ package com.dorothy.admin.goods.dao;
 import java.util.List;
 
 import com.dorothy.member.goods.vo.MemberGoodsVO;
+import com.dorothy.member.order.customOrder.vo.CustomOrderBoardVO;
 
 public interface AdminGoodsDao {
 	public List<MemberGoodsVO> goodsList(MemberGoodsVO gvo);
@@ -14,4 +15,6 @@ public interface AdminGoodsDao {
 	public int goodsInsert(MemberGoodsVO gvo);
 	public MemberGoodsVO deleteVO(int g_code);
 	public List<MemberGoodsVO> goodsListExcel(MemberGoodsVO gvo);
+	public int customOrderGoodsInsert(MemberGoodsVO mgvo);
+	public int getCode(CustomOrderBoardVO cobvo);
 }

@@ -69,29 +69,29 @@
 				});
 				
 				/* 댓글 수정 */
-				$(document).on("click", "#replyFreeUpdateBtn", function(){
-					let rf_num = $(this).attr("data-num");
+				$(document).on("click", "#replyCustomOrderUpdateBtn", function(){
+					let rc_num = $(this).attr("data-num");
 					
 					$.ajax({
-						url: "/replies/free/" + rf_num,
+						url: "/replies/customOrder/" + rc_num,
 						type: "put",
 						headers: {
 							"Content-Type": "application/json",
 							"X-HTTP-Method-Override": "PUT"
 						},
-						data: JSON.stringify({rf_content: $("#rf_content").val()}),
+						data: JSON.stringify({rc_content: $("#rc_content").val()}),
 						dataType: "text",
 						error: function(xhr, textStatus, errorThrown){
 							alert("문제가 발생했습니다. 잠시 후에 다시 시도해 주세요.");
 						},
 						beforeSend: function(){
-							if(!checkForm("#rf_content", "댓글 내용을")) return false;
+							if(!checkForm("#rc_content", "댓글 내용을")) return false;
 						},
 						success: function(result){
 							if(result == "SUCCESS"){
 								alert("댓글 수정이 완료되었습니다.");
 								dataReset();
-								listAll(f_num);
+								listAll(c_num);
 							}
 						}
 					});
@@ -103,7 +103,7 @@
 			function listAll(c_num){
 				$(".reply").detach();
 				
-				let url = "/replies/customOrder/all/" + c_num;
+				let url = "/admin/replies/customOrder/all/" + c_num;
 				
 				$.getJSON(url, function(data){
 					$(data).each(function(){
@@ -112,7 +112,9 @@
 						let rc_content = this.rc_content;
 						let rc_date = this.rc_date;
 						rc_content = rc_content.replace(/(\r\n|\r|\n)/g, "<br />");
+						/* console.log(rc_content); */
 						template(rc_num, ad_id, rc_content, rc_date);
+						
 					});
 				}).fail(function(){
 					alert("댓글 목록을 불러오는데 실패하였습니다. 잠시 후에 다시 시도해 주세요.");
@@ -124,7 +126,7 @@
 				let $div = $("#replyCustomOrderList");
 				
 				let $element = $("#item-template").clone().removeAttr("id");
-				$element.attr("data-num", rf_num);
+				$element.attr("data-num", rc_num);
 				$element.addClass("reply");
 				$element.find(".panel-heading > .panel-title > .id").html(ad_id + " 님");
 				$element.find(".panel-heading > .panel-title > .date").html(" / " + rc_date);
@@ -167,13 +169,13 @@
 			}
 			
 			/* 댓글 수정 폼 함수 */
-			function updateReplyForm(rf_num, panel){
+			function updateReplyForm(rc_num, panel){
 				let content = panel.find(".panel-body").html();
 				content = content.replace(/(<br>|<br\/>|<br \/>)/g, "\r\n");
-				$("#rf_content").val(content);
+				$("#rc_content").val(content);
 				
-				$("#replyFreeForm button[type='button']").attr("id", "replyFreeUpdateBtn");
-				$("#replyFreeForm button[type='button']").attr("data-num", rf_num);
+				$("#replyCustomOrderForm button[type='button']").attr("id", "replyCustomOrderUpdateBtn");
+				$("#replyCustomOrderForm button[type='button']").attr("data-num", rc_num);
 			}
 			
 		</script>
@@ -220,7 +222,7 @@
 							<span class="id"></span>
 							<span class="date"></span>
 							<span class="upBtn"><a>수정</a></span>
-							<span class="delBtn"><img src="/resources/images/common/delete.png" /></span>
+							<span class="delBtn"><img src="/resources/images/common/delete.png" style="display: inline;"/></span>
 						</h3>
 					</div>
 					<div class="panel-body"></div>

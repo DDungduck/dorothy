@@ -90,4 +90,17 @@
 			<include refid="goodsSearch"></include>
 		</where>
 	</select>
+	
+	<!--  커스텀 제품 등록  -->
+	<insert id="customOrderGoodsInsert" parameterType="goods">
+	<selectKey keyProperty="g_code" resultType="int" order="BEFORE"> 
+		SELECT goods_code_seq.nextval FROM dual 
+	</selectKey>
+		INSERT INTO goods(g_code, g_name, g_type, g_price, g_file, g_size, g_recommend, g_new, g_custom) 
+		VALUES(#{g_code}, #{g_name}, #{g_type}, #{g_price}, #{g_file}, #{g_size}, #{g_recommend}, #{g_new}, #{g_custom})
+	</insert>
+	<!--  커스텀 제품 상품코드 가져오기  -->
+	<select id="getCode" parameterType="customOrder" resultType="int"> 
+		SELECT g_code FROM goods where g_name = #{g_name} 
+	</select>
 </mapper>

@@ -10,15 +10,17 @@
 				/* 등록 버튼 클릭 시 글 등록 */
 				$("#reviewInsertBtn").click(function(){
 					// 입력값 유효성 체크
-					if(!chkData("#r_content", "내용을")) return;
+					if(!chkData("#r_title", "제목을")) return;
+					else if(!chkData("#r_content", "내용을")) return;
 					else {
-						// 작성자 아이디 할당
-						$("#m_id").val("abc123");
+						if($("#r_file").val() != null){
+							if(!chkFile("#r_file")) return;
+						}
 						
 						$("#reviewWrite").attr({
 							"method":"post",
 							"enctype":"multipart/form-data",
-							"action":"/board/review/reviewInsert"
+							"action":"/board/review/boardReviewInsert"
 						});
 						
 						$("#reviewWrite").submit();
@@ -54,14 +56,21 @@
 							<tr>
 								<td>작성자</td>
 								<td class="text-left">
+									${member.m_name}
 									<!-- 로그인 한 사용자의 아이디 받아오기 -->
 									<input type="hidden" id="m_id" name="m_id" value = "${member.m_id}" />
 								</td>
 							</tr>
 							<tr>
+								<td>제목</td>
+								<td class="text-left">
+									<input type="text" id="r_title" name="r_title" class="form-control" />
+								</td>
+							</tr>
+							<tr>
 								<td>내용</td>
 								<td class="text-left">
-									<textarea rows="8" id="c_content" name="c_content" class="form-control"></textarea>
+									<textarea rows="8" id="r_content" name="r_content" class="form-control"></textarea>
 								</td>
 							</tr>
 							<tr>

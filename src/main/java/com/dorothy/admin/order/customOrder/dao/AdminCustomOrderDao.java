@@ -8,5 +8,5 @@ public interface AdminCustomOrderDao {
 	public List<CustomOrderBoardVO> customOrderList(CustomOrderBoardVO cobvo);
 	public int customOrderListCnt(CustomOrderBoardVO cobvo);
 	public CustomOrderBoardVO customOrderDetail(CustomOrderBoardVO cobvo);
-
+	
 }

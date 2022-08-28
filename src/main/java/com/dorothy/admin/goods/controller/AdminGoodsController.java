@@ -44,7 +44,7 @@ public class AdminGoodsController {
 	}
 	
 	@RequestMapping(value="/goodsDetail", method = RequestMethod.GET)
-	public String boardFreeDetail(@ModelAttribute("data") MemberGoodsVO gvo, Model model) {
+	public String goodsDetail(@ModelAttribute("data") MemberGoodsVO gvo, Model model) {
 		log.info("goodsDetail 호출 성공");
 		
 		MemberGoodsVO detail = adminGoodsService.goodsDetail(gvo);
@@ -84,7 +84,7 @@ public class AdminGoodsController {
 	}
 	
 	@RequestMapping(value="/goodsUpdateForm")
-	public String freeUpdateForm(@ModelAttribute("data") MemberGoodsVO gvo, Model model) throws Exception {
+	public String goodsUpdateForm(@ModelAttribute("data") MemberGoodsVO gvo, Model model) throws Exception {
 		log.info("goodsUpdateForm 호출 성공");
 		log.info("g_code : " +gvo.getG_code());
 		

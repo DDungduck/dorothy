@@ -6,10 +6,9 @@
 			
 			/* 수정 버튼 클릭 시 수정 폼으로 이동 */
 			$("#customOrderupdateFormBtn").click(function(){
-				// 나중에 사용자 제어 추가!
 				$("#c_data").attr({
 					"method":"post",
-					"action":"/board/customOrder/customOrderupdateForm"
+					"action":"/board/customOrder/customOrderUpdateForm"
 				});
 				$("#c_data").submit();
 			});
@@ -38,13 +37,41 @@
 			$("#customOrderListBtn").click(function(){
 				location.href="/board/customOrder/customOrderList";
 			});
+			
+			/* 주문 버튼 클릭 시 결제 페이지 출력하기 */
+			$("#orderBtn").click(function(){
+				$("#frmCart").attr({
+					"method":"post",
+					"action":"/member/cart/goPayment"
+				});
+				let g_code = $("#frmCart").find("input[name=g_code]").val();
+				console.log(g_code);
+				$("#frmCart").submit();
+				
+			});
+			
+			/* 취소 버튼 클릭 시 목록으로 돌아가기 */
+			$("#cancelBtn").click(function(){
+				location.href="/board/customOrder/customOrderList";
+			});
+			
 		}); // $ 함수 종료
 	</script>
 	</head>
 	<body>
+	
+		<div id="goodsFormData">
+					<form id="frmCart" name="frmCart">
+						<input type="hidden" name="g_code" value="${g_code }" />
+						<input type="hidden" name="gc_amount" value="${customOrderDetail.c_amount }" />
+						<input type="hidden" name="g_price" value="${customOrderDetail.c_price}" />
+						<input type="hidden" name="m_id" value="${member.m_id }" />
+						<input type="hidden" name="g_size" value="${customOrderDetail.c_size }" />
+					</form>
+				</div>
 		<div class="contentContainer container">
 			<form name="c_data" id="c_data">
-				<input type="hidden" id="c_num" name="f_num" value="${customOrderDetail.c_num}" />
+				<input type="hidden" id="c_num" name="c_num" value="${customOrderDetail.c_num}" />
 				<%-- <input type="hidden" id="c_file" name="f_file" value="${customOrderDetail.f_file}" />
 				<input type="hidden" id="c_replycnt" name="f_replycnt" value="${customOrderDetail.f_replycnt}" /> --%>
 			</form>
@@ -74,7 +101,7 @@
 						<td class="col-md-4">원하는 수령일</td>
 						<td colspan="3" class="col-md-8 text-left">${customOrderDetail.c_receiptdate}</td>
 					</tr>
-						<tr>
+					<tr>
 						<td class="col-md-4">수량</td>
 						<td colspan="3" class="col-md-8 text-left">${customOrderDetail.c_amount}</td>
 					</tr>
@@ -102,10 +129,26 @@
 							</c:if>
 						</td>
 					</tr>
+					<c:if test="${customOrderDetail.c_price > 0}">
+					<tr class="table-tr-height">
+						<td class="col-md-4">가격</td>
+						<td colspan="3" class="col-md-8 text-left">${customOrderDetail.c_price}</td>
+					</tr>
+					</c:if>
 				</tbody>
 			</table>
+			<%-- 관리자가 가격 등록 했을 때 나타나는 주문/취소 버튼 --%>
+			<c:if test="${customOrderDetail.c_price > 0}">
+				<input type="button" value="주문" id="orderBtn" name="orderBtn" class="btn btn-success" />
+				<input type="button" value="취소" id="cancelBtn" name="cancelBtn" class="btn btn-success" />
+			</c:if>
+			<%-- 버튼 종료 --%>
 		</div>
+		<br />
+		<br />
 		<%-- 글 상세 정보 보여주기 종료 --%>
-		<jsp:include page="reply.jsp"></jsp:include> 
+		<jsp:include page="reply.jsp"></jsp:include>
+		
+		
 </body>
 </html>

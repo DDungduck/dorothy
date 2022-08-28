@@ -116,14 +116,14 @@
 										<td>${customOrderList.c_num}</td> 
 										<td class="goDetail text-left">
 											${customOrderList.c_title}
-											<%-- <c:if test="${customOrderList.c_replycnt > 0}">
+											<c:if test="${customOrderList.c_replycnt > 0}">
 												<span class="reply_count">&nbsp;[${customOrderList.c_replycnt}]</span>
 											</c:if>
 											<c:if test="${not empty customOrderList.c_file}">
-												&nbsp;<img src="/resources/images/common/haveimg.png" style="margin-bottom: 0px; vertical-align: middle;"/>
-											</c:if> --%>
+												&nbsp;<img src="/resources/images/common/haveimg.png" style="margin-bottom: 0px; vertical-align: middle; display: inline;" />
+											</c:if>
 										</td>
-										<td class="name">${customOrderList.m_id}</td>
+										<td class="name">${customOrderList.m_nick}</td>
 										<td class="text-center">${customOrderList.c_inquiry}</td>
 									</tr> 
 								</c:forEach> 
@@ -137,30 +137,30 @@
 					</tbody>
 				</table>
 			</div> 
-			<%-- 자유게시판 리스트 종료 --%>
+			<%-- 커스텀 제품 주문 게시판 리스트 종료 --%>
 			
 			<%-- 검색 기능 시작 --%>
-			<%-- <div id="boardfreeSearch" class="text-center">
-				<form id="freeSearch" name="freeSearch" class="form-inline">
-					페이징 처리를 위한 파라미터
+			<div id="boardCustomOrderSearch" class="text-center">
+				<form id="CustomOrderSearch" name="CustomOrderSearch" class="form-inline">
+					<%-- 페이징 처리를 위한 파라미터 --%>
 					<input type="hidden" name="pageNum" value="${pageMaker.cvo.pageNum}">
 					<input type="hidden" name="amount" value="${pageMaker.cvo.amount}">
 					<div class="form-group">
 						<select id="search" name="search" class="form-control">
 							<option value="all">전체</option>
-							<option value="f_title">제목</option>
-							<option value="f_content">내용</option>
+							<option value="c_title">제목</option>
+							<option value="c_content">내용</option>
 							<option value="m_id">작성자</option>
 						</select>
 						<input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" class="form-control" />
 						<input type="button" value="검색" id="searchData" name="searchData" class="btn btn-success" />
 					</div>
 				</form>
-			</div> --%>
+			</div> 
 			<%-- 검색 기능 종료 --%>
 			
 			<%-- 페이징 처리 커스텀 태그 --%>
-			<%-- <tag:pagination endPage="${pageMaker.endPage}" startPage="${pageMaker.startPage}" amount="${pageMaker.cvo.amount}" next="${pageMaker.next}" prev="${pageMaker.prev}" pageNum="${pageMaker.cvo.pageNum}" /> --%>
+			<tag:pagination endPage="${pageMaker.endPage}" startPage="${pageMaker.startPage}" amount="${pageMaker.cvo.amount}" next="${pageMaker.next}" prev="${pageMaker.prev}" pageNum="${pageMaker.cvo.pageNum}" />
 		</div>
 	</body>
 </html>

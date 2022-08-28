@@ -23,7 +23,7 @@
 			function listAll(c_num){
 				$(".reply").detach();
 				
-				let url = "/replies/customOrder/all/" + c_num;
+				let url = "/admin/replies/customOrder/all/" + c_num;
 				
 				$.getJSON(url, function(data){
 					$(data).each(function(){

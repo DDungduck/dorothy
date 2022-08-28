@@ -44,6 +44,7 @@
 			<form name="r_data" id="r_data">
 				<input type="hidden" id="r_num" name="r_num" value="${brDetail.r_num}" />
 				<input type="hidden" id="r_file" name="r_file" value="${brDetail.r_file}" />
+				<input type="hidden" id="r_thumbnail" name="r_thumbnail" value="${brDetail.r_thumbnail}" />
 				<input type="hidden" id="r_replycnt" name="r_replycnt" value="${brDetail.r_replycnt}" />
 			</form>
 		</div>
@@ -71,7 +72,7 @@
 							<c:if test="${not empty brDetail.r_file}">
 								<br />
 								<br />
-								<img src="/dorothyUpload/board/review/${brDetail.r_file}" />
+								<img src="/dorothyUpload/review/${brDetail.r_file}" />
 							</c:if>
 						</td>
 					</tr>

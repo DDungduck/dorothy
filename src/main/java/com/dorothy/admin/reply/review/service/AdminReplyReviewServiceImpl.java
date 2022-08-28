@@ -16,6 +16,7 @@ public class AdminReplyReviewServiceImpl implements AdminReplyReviewService {
 	@Setter(onMethod_ = @Autowired)
 	private AdminReplyReviewDao adminReplyReviewDao;
 
+	// 댓글 목록 구현
 	@Override
 	public List<AdminReplyReviewVO> replyReviewList(Integer r_num) {
 		List<AdminReplyReviewVO> replyList = null;
@@ -23,10 +24,27 @@ public class AdminReplyReviewServiceImpl implements AdminReplyReviewService {
 		return replyList;
 	}
 
+	// 댓글 쓰기 구현
 	@Override
 	public int replyReviewInsert(AdminReplyReviewVO rrvo) {
 		int result = 0;
 		result = adminReplyReviewDao.replyReviewInsert(rrvo);
+		return result;
+	}
+
+	// 댓글 삭제 구현
+	@Override
+	public int replyReviewDelete(int rr_num) {
+		int result = 0;
+		result = adminReplyReviewDao.replyReviewDelete(rr_num);
+		return result;
+	}
+	
+	// 댓글 수정 구현
+	@Override
+	public int replyReviewUpdate(AdminReplyReviewVO rrvo) {
+		int result = 0;
+		result = adminReplyReviewDao.replyReviewUpdate(rrvo);
 		return result;
 	}
 

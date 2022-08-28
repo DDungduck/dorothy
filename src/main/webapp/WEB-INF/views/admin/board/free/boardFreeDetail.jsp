@@ -75,7 +75,7 @@
 							<c:if test="${not empty bfDetail.f_file}">
 								<br />
 								<br />
-								<img src="/dorothyUpload/board/free/${bfDetail.f_file}" />
+								<img src="/dorothyUpload/free/${bfDetail.f_file}" />
 							</c:if>
 						</td>
 					</tr>

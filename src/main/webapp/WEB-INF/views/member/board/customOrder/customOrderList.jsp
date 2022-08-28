@@ -30,13 +30,32 @@
 				
 				/* 제목 클릭 시 상세 페이지 이동 */
 				$(".goDetail").click(function(){
-					let c_num = $(this).parents("tr").attr("data-num");
-					$("#c_num").val(c_num);
-					$("#detailForm").attr({
-						"method":"get",
-						"action":"/board/customOrder/customOrderDetail"
-					});
-					$("#detailForm").submit();
+					
+					let m_nick = $(this).parents("tr").attr("data-name");
+					if(${member != null}){
+						
+						let member_nick = "${member.m_nick}";
+						
+						//console.log(m_nick);
+						//console.log(member_nick);
+						
+						if(m_nick == member_nick){
+
+							let c_num = $(this).parents("tr").attr("data-num");
+							$("#c_num").val(c_num);
+							$("#detailForm").attr({
+								"method":"get",
+								"action":"/board/customOrder/customOrderDetail"
+							});
+							$("#detailForm").submit();
+						} else{
+							alert("본인글만 조회할 수 있습니다.");
+							return;
+						}
+					} else {
+						alert("본인글만 조회할 수 있습니다.");
+						return;
+					}
 				});
 				
 				/* 글쓰기 버튼 클릭 시 글쓰기 폼으로 이동 */
@@ -84,7 +103,7 @@
 				if($("#search").val() == "all"){
 					$("#keyword").val("");
 				}
-				$("#freeSearch").attr({
+				$("#customOrderSearch").attr({
 					"method":"get",
 					"action":"/board/customOrder/customOrderList"
 				});
@@ -115,18 +134,18 @@
 						<c:choose>
 							<c:when test="${not empty customOrderList}">
 								<c:forEach var="customOrderList" items="${customOrderList}" varStatus="status">
-									<tr class="text-center" data-num="${customOrderList.c_num}">
+									<tr class="text-center" data-num="${customOrderList.c_num}" data-name="${customOrderList.m_nick}">
 										<td>${customOrderList.c_num}</td> 
 										<td class="goDetail text-left">
 											${customOrderList.c_title}
-											<%-- <c:if test="${customOrderList.c_replycnt > 0}">
+											<c:if test="${customOrderList.c_replycnt > 0}">
 												<span class="reply_count">&nbsp;[${customOrderList.c_replycnt}]</span>
 											</c:if>
 											<c:if test="${not empty customOrderList.c_file}">
 												&nbsp;<img src="/resources/images/common/haveimg.png" style="margin-bottom: 0px; vertical-align: middle;"/>
-											</c:if> --%>
+											</c:if>
 										</td>
-										<td class="name">${customOrderList.m_id}</td>
+										<td class="name">${customOrderList.m_nick}</td>
 										<td class="text-center">${customOrderList.c_inquiry}</td>
 									</tr> 
 								</c:forEach> 

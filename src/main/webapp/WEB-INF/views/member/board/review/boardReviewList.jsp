@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/common.jspf" %>
+
+		<style type="text/css">
+			textarea { resize: none; }
+			.reply_count { color: red; font-size: small; }
+			.required { font-weight: bold; }
+		</style>
 		
 		<script type="text/javascript">
 			$(function(){
@@ -139,7 +145,7 @@
 										<td class="goDetail text-center">
 											${boardReview.r_title}
 											<c:if test="${boardReview.r_replycnt > 0}">
-											<span class="reply_count">[${boardReview.r_replycnt}]</span>
+												<span class="reply_count">&nbsp;[${boardReview.r_replycnt}]</span>
 											</c:if>
 										</td>
 										<td class="name">${boardReview.m_id}</td>
@@ -156,7 +162,7 @@
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<td colspan="4" class="tac text-center">등록된 게시물이 존재하지 않습니다.</td>
+									<td colspan="5" class="text-center">등록된 게시물이 존재하지 않습니다.</td>
 								</tr>
 							</c:otherwise>
 						</c:choose>
@@ -165,41 +171,16 @@
 			</div>
 			<%-- ======================= 리스트 종료 ======================= --%>
 			
-			<%-- ======================= 글쓰기 버튼 출력 시작 ======================= --%>
+			<%-- ======================= 리뷰쓰기 버튼 출력 시작 ======================= --%>
 			<div class="contentBtn text-right">
 				<button type="button" id="insertFormBtn" class="btn btn-success">리뷰쓰기</button>
 			</div>
 			<%-- ======================= 글쓰기 버튼 출력 종료 ======================= --%>
 			
-			<%-- ======================= 페이징 출력 시작 ======================= --%>
-			<%-- <div class="text-center">
-				<ul class="pagination">
-					이전 바로가기 10개 존재 여부를 prev 필드의 값으로 확인.
-					<c:if test="${pageMaker.prev}">
-						<li class="paginate_button previous">
-							<a href="${pageMaker.startPage -1}">Previous</a>
-						</li>
-					</c:if>
-					
-					바로가기 번호 출력
-					<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-						<li class="paginate_button ${pageMaker.cvo.pageNum == num ? 'active':'' }">
-							<a href="${num}">${num}</a>
-						</li>
-					</c:forEach>
-					
-					다음 바로가기 10개 존재 여부를 next 필드의 값으로 확인.
-					<c:if test="${pageMaker.next}">
-						<li class="paginate_button next">
-							<a href="${pageMaker.endPage +1}">Next</a>
-						</li>
-					</c:if>
-				</ul>
-			</div> --%>
+			
 			
 			<%-- 페이징 처리를 커스텀태그(pagination)를 정의 --%>
-			<tag:pagination pageNum="${pageMaker.cvo.pageNum}" amount="${pageMaker.cvo.amount}" 
-			startPage="${pageMaker.startPage}" endPage="${pageMaker.endPage}" prev="${pageMaker.prev}" next="${pageMaker.next}" />
+			<tag:pagination pageNum="${pageMaker.cvo.pageNum}" amount="${pageMaker.cvo.amount}" startPage="${pageMaker.startPage}" endPage="${pageMaker.endPage}" prev="${pageMaker.prev}" next="${pageMaker.next}" />
 			
 			
 		</div>

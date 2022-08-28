@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.dorothy.admin.goods.dao.AdminGoodsDao;
 import com.dorothy.common.file.FileUploadUtil;
 import com.dorothy.member.goods.vo.MemberGoodsVO;
+import com.dorothy.member.order.customOrder.vo.CustomOrderBoardVO;
 
 import lombok.AllArgsConstructor;
 
@@ -103,6 +104,27 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	public List<MemberGoodsVO> goodsListExcel(MemberGoodsVO gvo) {
 		List<MemberGoodsVO> list = adminGoodsDao.goodsListExcel(gvo);
 		return list;
+	}
+	
+
+	@Override
+	public int customOrderGoodsInsert(MemberGoodsVO mgvo) throws Exception {
+		int result = 0;
+		
+		if(mgvo.getFile().getSize() > 0) {
+			String fileName = FileUploadUtil.fileUpload(mgvo.getFile(), "goods");
+			mgvo.setG_file(fileName);
+		}
+		
+		result = adminGoodsDao.customOrderGoodsInsert(mgvo);
+		return result;
+	}
+
+	@Override
+	public int getCode(CustomOrderBoardVO cobvo) {
+		int g_code;
+		g_code = adminGoodsDao.getCode(cobvo);
+		return g_code;
 	}
 
 }

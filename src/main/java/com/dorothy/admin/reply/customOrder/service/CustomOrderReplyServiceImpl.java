@@ -29,6 +29,10 @@ public class CustomOrderReplyServiceImpl implements CustomOrderReplyService {
 	public int replyCustomOrderInsert(CustomOrderReplyVO corvo) {
 		int result = 0;
 		result = customOrderReplyDao.replyCustomOrderInsert(corvo);
+		
+		if (result == 1) {
+			customOrderReplyDao.inquiryUpdate(corvo); 			
+		}
 		return result;
 	}
 	
@@ -47,5 +51,5 @@ public class CustomOrderReplyServiceImpl implements CustomOrderReplyService {
 		result = customOrderReplyDao.replyCustomOrderUpdate(corvo);
 		return result;
 	}
-	
+
 }

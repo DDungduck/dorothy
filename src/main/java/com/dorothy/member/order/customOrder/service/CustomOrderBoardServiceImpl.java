@@ -55,8 +55,8 @@ public class CustomOrderBoardServiceImpl implements CustomOrderBoardService {
 	public int customOrderInsert(CustomOrderBoardVO cobvo) throws Exception {
 		int result = 0;
 
-		if (cobvo.getFile().getSize() > 0) {
-			String fileName = FileUploadUtil.fileUpload(cobvo.getFile(), "customOrder");
+		if (cobvo.getMfile().getSize() > 0) {
+			String fileName = FileUploadUtil.fileUpload(cobvo.getMfile(), "customOrder");
 			System.out.println("fileName" + fileName);
 			cobvo.setC_file(fileName);
 		}
@@ -84,7 +84,7 @@ public class CustomOrderBoardServiceImpl implements CustomOrderBoardService {
 	
 	// 커스텀 제품 주문 게시판 글 수정 폼에 기존 데이터 전달
 	@Override
-	public CustomOrderBoardVO customOrderupdateForm(CustomOrderBoardVO cobvo) {
+	public CustomOrderBoardVO customOrderUpdateForm(CustomOrderBoardVO cobvo) {
 		CustomOrderBoardVO updateData = null;
 		updateData = customOrderBoardDao.customOrderDetail(cobvo);
 		return updateData;
@@ -95,12 +95,12 @@ public class CustomOrderBoardServiceImpl implements CustomOrderBoardService {
 	public int customOrderUpdate(CustomOrderBoardVO cobvo) throws Exception {
 		int result = 0;
 
-		if (!cobvo.getFile().isEmpty()) {
+		if (!cobvo.getMfile().isEmpty()) {
 			if (!cobvo.getC_file().isEmpty()) {
 				FileUploadUtil.fileDelete(cobvo.getC_file());
 			}
 
-			String fileName = FileUploadUtil.fileUpload(cobvo.getFile(), "board/customOrder");
+			String fileName = FileUploadUtil.fileUpload(cobvo.getMfile(), "board/customOrder");
 			cobvo.setC_file(fileName);
 		}
 		result = customOrderBoardDao.customOrderUpdate(cobvo);

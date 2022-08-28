@@ -9,7 +9,7 @@ public interface AdminCustomOrderService {
 	public int customOrderListCnt(CustomOrderBoardVO cobvo);
 	public CustomOrderBoardVO customOrderDetail(CustomOrderBoardVO cobvo);
 	public int customOrderPriceupdate(CustomOrderBoardVO cobvo);
-
+	
 	
 
 }
