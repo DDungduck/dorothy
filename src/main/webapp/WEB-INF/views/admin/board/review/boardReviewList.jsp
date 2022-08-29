@@ -34,7 +34,7 @@
 					$("#r_num").val(r_num);
 					$("#detailForm").attr({
 						"method":"get",
-						"action":"/admin/board/review/reviewDetail"
+						"action":"/admin/board/review/boardReviewDetail"
 					});
 					$("#detailForm").submit();
 				});
@@ -123,7 +123,7 @@
 				}
 				$("#reviewSearch").attr({
 					"method":"get",
-					"action":"/admin/board/review/reviewList"
+					"action":"/admin/board/review/boardReviewList"
 				});
 				$("#reviewSearch").submit();
 			}
@@ -146,33 +146,29 @@
 							<th data-value="r_num" class="order text-center col-md-1">글번호</th>
 							<th class="text-center col-md-4">글제목</th>
 							<th class="text-center col-md-2">작성자</th>
-							<th data-value="r_date" class="order col-md-1">작성일</th>
-							<th class="text-center col-md-1">조회수</th>
 						</tr>
 					</thead>
 					<tbody id="list" class="table-striped">
 						<!-- 데이터 출력 -->
 						<c:choose>
 							<c:when test="${not empty boardReviewList}">
-								<c:forEach var="review" items="${boardReviewList}" varStatus="status">
-									<tr class="text-center" data-num="${review.r_num}">
+								<c:forEach var="boardReview" items="${boardReviewList}" varStatus="status">
+									<tr class="text-center" data-num="${boardReview.r_num}">
 										<td>
-											<input type="checkbox" name="deleteCheck" value="${review.r_num}">
+											<input type="checkbox" name="deleteCheck" value="${boardReview.r_num}">
 										</td>
 										<td>${count - status.index}</td>
-										<td>${review.r_num}</td>
+										<td>${boardReview.r_num}</td>
 										<td class="goDetail text-left">
-											${review.r_title}
-											<c:if test="${review.r_replycnt > 0}">
-												<span class="reply_count">&nbsp;[${review.r_replycnt}]</span>
+											${boardReview.r_title}
+											<c:if test="${boardReview.r_replycnt > 0}">
+												<span class="reply_count">&nbsp;[${boardReview.r_replycnt}]</span>
 											</c:if>
-											<c:if test="${not empty review.r_file}">
+											<c:if test="${not empty boardReview.r_file}">
 												&nbsp;<img src="/resources/images/common/haveimg.png" style="margin-bottom: 0px; vertical-align: middle; display: inline-block;"/>
 											</c:if>
 										</td>
-										<td class="name">${review.m_id}</td>
-										<td class="text-left col-md-1">${review.r_date}</td>
-										<td class="text-center">${review.r_readcnt}</td>
+										<td class="name">${boardReview.m_id}</td>
 									</tr>
 								</c:forEach>
 							</c:when>

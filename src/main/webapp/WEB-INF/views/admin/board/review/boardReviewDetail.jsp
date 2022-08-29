@@ -14,7 +14,7 @@
 			$("#reviewDeleteBtn").click(function(){
 				if(confirm("정말 삭제하시겠습니까?")){
 					$.ajax({
-						url: "/admin/board/review/reviewDelete",
+						url: "/admin/board/review/boardReviewDelete",
 						type: "post",
 						data: $("#r_data").serialize(),
 						dataType: "text",
@@ -22,9 +22,9 @@
 							alert("문제가 발생했습니다. 잠시 후에 다시 시도해 주세요.");
 						},
 						success: function(resultData){
-							console.log(resultData);	
+							console.log(resultData);
 							alert("등록한 게시글이 삭제되었습니다.");
-							location.href="/admin/board/review/reviewList";	
+							location.href="/admin/board/review/boardReviewList";	
 						}
 					});
 				}
@@ -32,9 +32,10 @@
 			
 			/* 목록 버튼 클릭 시 목록으로 돌아가기 */
 			$("#reviewListBtn").click(function(){
-				location.href="/admin/board/review/reviewList";
+				location.href="/admin/board/review/boardReviewList";
 			});
 		}); // $ 함수 종료
+		
 	</script>
 	</head>
 	<body style="padding-top: 0px">
@@ -75,7 +76,7 @@
 							<c:if test="${not empty brDetail.r_file}">
 								<br />
 								<br />
-								<img src="/dorothyUpload/board/review/${brDetail.r_file}" />
+								<img src="/dorothyUpload/review/${brDetail.r_file}" />
 							</c:if>
 						</td>
 					</tr>
@@ -83,6 +84,6 @@
 			</table>
 		</div>
 		<%-- 글 상세 정보 보여주기 종료 --%>
-		<jsp:include page="reviewReply.jsp"></jsp:include>
+		<jsp:include page="boardReviewReply.jsp"></jsp:include>
 	</body>
 </html>
