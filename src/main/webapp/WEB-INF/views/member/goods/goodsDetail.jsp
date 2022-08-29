@@ -51,6 +51,8 @@
 					if(${member != null}) {
 						addFrmInfo();
 						
+						let g_type = parseInt($("#frmCart").find("input[name=g_type]").val());
+						
 						if(!chkData("#date", "날짜를")) return;
 						else if(g_type != 3){
 							if(!chkData("#size", "사이즈를")) return;
